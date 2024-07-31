@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Home</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+@extends('layouts.main') <!-- Ni akan beritahu halaman ini mengambil/layout dari main.blade.php -->
+ 
+@section('container')
     <h1>Homepage</h1>
+@endsection
 
-    <script src="js/script.js"></script>
-</body>
-</html>
