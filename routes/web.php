@@ -23,5 +23,5 @@ Route::get('/about', function () {
 Route::get('/blog', [PostController::class, 'index']); // 'index' tu nama method
 
 // Single Post route
-Route::get('posts/{slug}', [PostController::class, 'show']);
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
