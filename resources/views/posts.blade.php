@@ -9,10 +9,10 @@
             <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6">
                 <div class="p-6">
                     <h2 class="text-2xl font-bold text-gray-900 mb-2">
-                    <a href="/posts/{{ $post['slug']}}">{{ $post["title"] }}</a>
+                    <a href="/posts/{{ $post->slug }}">{{ $post["title"] }}</a>
                     </h2>
                     <h5 class="text-lg text-gray-700 mb-4">by: {{ $post["author"] }}</h5>
-                    <p class="text-gray-600">{{ $post["body"] }}</p>
+                    <p class="text-gray-600">{{ $post->excerpt }}</p>
                 </div>
             </div>
         @endforeach

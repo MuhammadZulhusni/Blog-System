@@ -6,15 +6,17 @@
         <div class="bg-white shadow-md rounded-lg overflow-hidden mb-6">
             <div class="p-6">
                 <!-- Title -->
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ $post["title"] }}</h2>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ $post->title }}</h2>
                 
-                <!-- Author and Date -->
+                <!-- Author -->
                 <div class="flex items-center mb-4">
-                    <h5 class="text-lg text-gray-700 mr-4">by: {{ $post["author"] }}</h5>
+                    <h5 class="text-lg text-gray-700 mr-4">by: {{ $post->author }}</h5>
                 </div>
                 
                 <!-- Content -->
-                <p class="text-gray-700 leading-relaxed">{{ $post["body"] }}</p>
+                <div class="text-gray-700 leading-relaxed">
+                    {!! $post->body !!}
+                </div>
             </div>
         </div>
 
@@ -27,3 +29,4 @@
         </a>
     </div>
 @endsection
+
