@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\PostController;
-use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('home',[
@@ -25,3 +25,20 @@ Route::get('/blog', [PostController::class, 'index']); // 'index' tu nama method
 // Single Post route
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
+
+Route::get('categories', function() {
+    return view('categories',[
+        'title' => "Post Categories",
+        'categories' => Category::all() 
+    ]);
+});
+
+
+// Route to display posts for a specific category identified by its slug
+Route::get('categories/{category:slug}', function(Category $category){
+    return view('category',[
+        'title' => $category->name,
+        'posts' => $category->posts,
+        'category' => $category->name
+    ]);
+});

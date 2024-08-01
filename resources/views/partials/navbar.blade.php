@@ -4,7 +4,7 @@
             <!-- Logo -->
             <div class="flex items-center">
                 <a href="/" class="flex-shrink-0">
-                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Company">
+                    <img class="h-8 w-auto" src="https://www.svgrepo.com/show/252140/news-report-newspaper.svg">
                 </a>
             </div>
             <!-- Desktop Menu -->
