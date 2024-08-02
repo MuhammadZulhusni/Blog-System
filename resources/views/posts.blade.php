@@ -8,10 +8,14 @@
         @foreach ($posts as $post)
             <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6">
                 <div class="p-6">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2 hover:text-blue-700">
                         <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
                     </h2>
-                    <p class="text-gray-600">{{ $post->excerpt }}</p>
+                    <div class="flex items-center mb-4">
+                        <h5 class="text-lg text-gray-700 mr-4">By <a href="#" class="text-blue-500 hover:text-blue-700">{{ $post->user->name }}</a> in <a href="/categories/{{ $post->category->slug }}" class="text-blue-500 hover:text-blue-700">{{ $post->category->name }}</a></h5>
+                    </div>  
+                    <p class="text-gray-600 mb-4">{{ $post->excerpt }}</p>
+                    <a href="/posts/{{ $post->slug }}" class="inline-block border border-blue-500 text-blue-500 font-semibold px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition duration-300">Read more..</a>
                 </div>
             </div>
         @endforeach
