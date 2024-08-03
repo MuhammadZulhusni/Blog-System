@@ -10,7 +10,11 @@
                 
                 <!-- Author & c=Category-->
                 <div class="flex items-center mb-4">
-                    <h5 class="text-lg text-gray-700 mr-4">By <a href="#" class="text-blue-500 hover:text-blue-700">{{ $post->user->name }}</a> in <a href="/categories/{{ $post->category->slug }}" class="text-blue-500 hover:text-blue-700">{{ $post->category->name }}</a></h5> <!-- Show the name of the category related to this post -->
+                    <h5 class="text-lg text-gray-700 mr-4">
+                        By 
+                        <a href="/authors/{{ $post->author->username }}" class="text-blue-500 hover:text-blue-700">{{ $post->author->name }}</a> 
+                        in 
+                        <a href="/categories/{{ $post->category->slug }}" class="text-blue-500 hover:text-blue-700">{{ $post->category->name }}</a></h5> <!-- Show the name of the category related to this post -->
                 </div>
                 
                 <!-- Content -->
