@@ -25,12 +25,13 @@
         </div>
 
         <!-- Back to posts link -->
-        <a href="/blog" class="inline-flex items-center text-blue-500 hover:text-blue-700 text-lg font-medium">
+        <a href="{{ url()->previous() }}" class="inline-flex items-center text-blue-500 hover:text-blue-700 text-lg font-medium">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
-            Back to posts
+            Back 
         </a>
+        <!-- "url()->previous()" helper to navigate to the previous page -->
     </div>
 @endsection
 

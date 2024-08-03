@@ -39,7 +39,7 @@ Route::get('categories', function() {
 Route::get('categories/{category:slug}', function(Category $category){
     return view('posts',[
         'title' => "Post By Category : $category->name",
-        'posts' => $category->posts,
+        'posts' => $category->posts->load('category', 'author'), // "load" tu ialah Lazy eager Loading
     ]);
 });
 
@@ -47,6 +47,6 @@ Route::get('categories/{category:slug}', function(Category $category){
 Route::get('/authors/{author:username}', function(User $author){
     return view('posts',[
         'title' => "Post By Author : $author->name",
-        'posts' => $author->posts, // Corrected to use `posts` instead of `post`, check dekat user model
+        'posts' => $author->posts->load('category', 'author'), // Corrected to use `posts` instead of `post`, check dekat user model & "load" tu ialah Lazy eager Loading
     ]);
 });
