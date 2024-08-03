@@ -4,7 +4,7 @@
             <!-- Logo -->
             <div class="flex items-center">
                 <a href="/" class="flex-shrink-0">
-                    <img class="h-8 w-auto" src="https://www.svgrepo.com/show/252140/news-report-newspaper.svg">
+                    <img class="h-8 w-auto" src="https://cdn-icons-png.flaticon.com/128/7914/7914881.png">
                 </a>
             </div>
             <!-- Desktop Menu -->
@@ -12,6 +12,7 @@
                 <a href="/" :class="{'bg-gray-900 text-white': currentPage === '/', 'text-gray-300 hover:bg-gray-700 hover:text-white': currentPage !== '/'}" class="rounded-md px-3 py-2 text-sm font-medium">Home</a>
                 <a href="/about" :class="{'bg-gray-900 text-white': currentPage === '/about', 'text-gray-300 hover:bg-gray-700 hover:text-white': currentPage !== '/about'}" class="rounded-md px-3 py-2 text-sm font-medium">About</a>
                 <a href="/blog" :class="{'bg-gray-900 text-white': currentPage === '/blog', 'text-gray-300 hover:bg-gray-700 hover:text-white': currentPage !== '/blog'}" class="rounded-md px-3 py-2 text-sm font-medium">Blog</a>
+                <a href="/categories" :class="{'bg-gray-900 text-white': currentPage === '/categories', 'text-gray-300 hover:bg-gray-700 hover:text-white': currentPage !== '/categories'}" class="rounded-md px-3 py-2 text-sm font-medium">Categories</a>
             </div>
             <!-- Login Button -->
             <a href="/login" class="flex items-center rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
@@ -39,6 +40,7 @@
             <a href="/" :class="{'bg-gray-900 text-white': currentPage === '/', 'text-gray-300 hover:bg-gray-700 hover:text-white': currentPage !== '/'}" class="block rounded-md px-3 py-2 text-base font-medium">Home</a>
             <a href="/about" :class="{'bg-gray-900 text-white': currentPage === '/about', 'text-gray-300 hover:bg-gray-700 hover:text-white': currentPage !== '/about'}" class="block rounded-md px-3 py-2 text-base font-medium">About</a>
             <a href="/blog" :class="{'bg-gray-900 text-white': currentPage === '/blog', 'text-gray-300 hover:bg-gray-700 hover:text-white': currentPage !== '/blog'}" class="block rounded-md px-3 py-2 text-base font-medium">Blog</a>
+            <a href="/categories" :class="{'bg-gray-900 text-white': currentPage === '/categories', 'text-gray-300 hover:bg-gray-700 hover:text-white': currentPage !== '/categories'}" class="block rounded-md px-3 py-2 text-base font-medium">Categories</a>
         </div>
     </div>
 </nav>
