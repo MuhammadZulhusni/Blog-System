@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -34,11 +35,19 @@ Route::get('categories', function() {
 });
 
 
-// Route to display posts for a specific category identified by its slug
+// Route to display posts for a specific "category" identified by its slug
 Route::get('categories/{category:slug}', function(Category $category){
     return view('category',[
         'title' => $category->name,
         'posts' => $category->posts,
         'category' => $category->name
+    ]);
+});
+
+// Route to display posts for a specific "author" identified by its slug
+Route::get('/authors/{author:username}', function(User $author){
+    return view('posts',[
+        'title' => 'User Posts',
+        'posts' => $author->posts, // Corrected to use `posts` instead of `post`, check dekat user model
     ]);
 });

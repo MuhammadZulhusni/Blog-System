@@ -14,9 +14,10 @@
                 <a href="/blog" :class="{'bg-gray-900 text-white': currentPage === '/blog', 'text-gray-300 hover:bg-gray-700 hover:text-white': currentPage !== '/blog'}" class="rounded-md px-3 py-2 text-sm font-medium">Blog</a>
             </div>
             <!-- Login Button -->
-            <div class="hidden sm:flex sm:items-center">
-                <a href="/login" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Login</a>
-            </div>
+            <a href="/login" class="flex items-center rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+                <img src="{{ asset('https://www.svgrepo.com/show/449958/user.svg') }}" alt="Login Icon" class="w-5 h-5 mr-2">
+                <span>Login</span>
+            </a>
             <!-- Mobile Menu Button -->
             <div class="-mr-2 flex sm:hidden">
                 <button @click="isOpen = !isOpen" type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -38,7 +39,6 @@
             <a href="/" :class="{'bg-gray-900 text-white': currentPage === '/', 'text-gray-300 hover:bg-gray-700 hover:text-white': currentPage !== '/'}" class="block rounded-md px-3 py-2 text-base font-medium">Home</a>
             <a href="/about" :class="{'bg-gray-900 text-white': currentPage === '/about', 'text-gray-300 hover:bg-gray-700 hover:text-white': currentPage !== '/about'}" class="block rounded-md px-3 py-2 text-base font-medium">About</a>
             <a href="/blog" :class="{'bg-gray-900 text-white': currentPage === '/blog', 'text-gray-300 hover:bg-gray-700 hover:text-white': currentPage !== '/blog'}" class="block rounded-md px-3 py-2 text-base font-medium">Blog</a>
-            <a href="/login" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
         </div>
     </div>
 </nav>
