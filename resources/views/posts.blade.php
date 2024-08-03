@@ -4,6 +4,7 @@
 
 @section('container')
     <div class="max-w-4xl mx-auto px-4 py-6">
+        <h1>{{ $title }}</h1>
         <!-- Loop through posts -->
         @foreach ($posts as $post)
             <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6">
