@@ -15,6 +15,7 @@
      
      @yield('container') <!-- Ni akan ambil dari child view like home,about,posts. So it will be difference based on child view data -->
 
+     <script src="{{ asset('js/categories.js') }}"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>

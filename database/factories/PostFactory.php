@@ -20,7 +20,10 @@ class PostFactory extends Factory
             'title' => fake()->sentence(mt_rand(2,8)),
             'slug' => fake()->slug(),
             'excerpt' =>  fake()->sentence(),
-            'body' => fake()->paragraph(mt_rand(5,10)),
+            // 'body' => '<p>' . implode('</p><p>',fake()->paragraphs(mt_rand(5,10))) . '</p>',
+            'body' => collect(fake()->paragraphs(mt_rand(5,10)))
+                ->map(fn($p) => "<p>$p</p>")
+                ->implode(''),
             'user_id' => mt_rand(1,3),
             'category_id' => mt_rand(1,2)
         ];
