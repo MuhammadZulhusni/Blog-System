@@ -11,7 +11,7 @@ class PostController extends Controller
     public function index() // index tu nama method
     {
         return view('posts', [
-            "title" => "Blog",
+            "title" => "All Posts",
             // "posts" => Post::all(), //method all(), untuk dapatkan semua data Post
             "posts" => Post::latest()->get( )
         ]); 
