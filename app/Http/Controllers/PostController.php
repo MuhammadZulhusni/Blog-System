@@ -13,7 +13,7 @@ class PostController extends Controller
         return view('posts', [
             "title" => "All Posts",
             // "posts" => Post::all(), //method all(), untuk dapatkan semua data Post
-            "posts" => Post::latest()->get( )
+            "posts" => Post::with(['author', 'category'])->latest()->get( ) // Eager Loading
         ]); 
     }
 
