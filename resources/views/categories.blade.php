@@ -17,7 +17,7 @@
 
                         <!-- Overlay Text -->
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-center justify-center p-4">
-                            <a href="/categories/{{ $category->slug }}" class="text-xl font-semibold text-white text-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
+                            <a href="/blog?category={{ $category->slug }}" class="text-xl font-semibold text-white text-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
                                 {{ $category->name }}
                             </a>
                         </div>

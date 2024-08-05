@@ -86,7 +86,7 @@
                         <div class="flex items-center mb-4">
                             <h5 class="text-md text-gray-700 mr-4">
                                 By 
-                                <a href="/blog?authors={{ $post->author->username }}" class="text-blue-500 hover:text-blue-700 transition duration-300">{{ $post->author->name }}</a> 
+                                <a href="/blog?author={{ $post->author->username }}" class="text-blue-500 hover:text-blue-700 transition duration-300">{{ $post->author->name }}</a> 
                                 <br>
                                 <span class="text-gray-500">{{ $post->created_at->diffForHumans() }}</span>
                             </h5>
