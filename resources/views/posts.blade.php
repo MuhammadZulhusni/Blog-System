@@ -38,6 +38,9 @@
             </div>
         </div>
 
+        <div class="mt-4 mb-4">
+            {{ $posts->links() }} <!-- Pagination -->
+        </div>
 
         <!-- Hero Post -->
         @if($posts->count())
@@ -97,11 +100,14 @@
                 </div>
             @endforeach
         </div>
+        <div class="mt-4 mb-4">
+            {{ $posts->links() }} <!-- Pagination -->
+        </div>
     </div>
-
 
 @else
     <p>No post found</p>
 @endif
+
 
 @endsection
