@@ -9,14 +9,15 @@
         <div class="py-4 px-4 mx-auto max-w-screen-xl lg:px-6">
             <div class="mx-auto max-w-screen-md sm:text-center">
                 <form action="/blog" method="GET">
-                    <!-- Category and Author Filters
+                    
+                    <!-- Category and Author Filters -->
                     @if(request('category'))
                         <input type="hidden" name="category" value="{{ request('category') }}">
                     @endif
 
                     @if(request('author'))
                         <input type="hidden" name="author" value="{{ request('author') }}">
-                    @endif -->
+                    @endif
 
                     <!-- Search Input -->
                     <div class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
@@ -45,7 +46,7 @@
                 <div class="relative">
                     <img src="https://www.cloudways.com/blog/wp-content/uploads/Laravel-9.jpg" class="w-full h-64 object-cover">
                     <div class="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black via-transparent to-transparent text-white">
-                        <a href="/categories/{{ $posts[0]->category->slug }}" class="text-xl font-semibold hover:text-blue-300 transition duration-300">{{ $posts[0]->category->name }}</a>
+                        <a href="/blog?category={{ $posts[0]->category->slug }}" class="text-xl font-semibold hover:text-blue-300 transition duration-300">{{ $posts[0]->category->name }}</a>
                     </div>
                 </div>
                 
@@ -56,7 +57,7 @@
                     <div class="flex items-center mb-4">
                         <h5 class="text-md text-gray-700 mr-4">
                             By 
-                            <a href="/authors/{{ $posts[0]->author->username }}" class="text-blue-500 hover:text-blue-700 transition duration-300">{{ $posts[0]->author->name }}</a> 
+                            <a href="/blog?author={{ $posts[0]->author->username }}" class="text-blue-500 hover:text-blue-700 transition duration-300">{{ $posts[0]->author->name }}</a> 
                             <br>
                             <span class="text-gray-500">{{ $posts[0]->created_at->diffForHumans() }}</span>
                         </h5>
@@ -74,7 +75,7 @@
                     <div class="relative">
                         <img src="https://via.placeholder.com/150" class="w-full h-48 object-cover">
                         <div class="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black via-transparent to-transparent text-white">
-                            <a href="/categories/{{ $post->category->slug }}" class="text-sm font-semibold hover:text-blue-300 transition duration-300">{{ $post->category->name }}</a>
+                            <a href="/blog?category={{ $post->category->slug }}" class="text-sm font-semibold hover:text-blue-300 transition duration-300">{{ $post->category->name }}</a>
                         </div>
                     </div>
 
@@ -85,7 +86,7 @@
                         <div class="flex items-center mb-4">
                             <h5 class="text-md text-gray-700 mr-4">
                                 By 
-                                <a href="/authors/{{ $post->author->username }}" class="text-blue-500 hover:text-blue-700 transition duration-300">{{ $post->author->name }}</a> 
+                                <a href="/blog?authors={{ $post->author->username }}" class="text-blue-500 hover:text-blue-700 transition duration-300">{{ $post->author->name }}</a> 
                                 <br>
                                 <span class="text-gray-500">{{ $post->created_at->diffForHumans() }}</span>
                             </h5>
