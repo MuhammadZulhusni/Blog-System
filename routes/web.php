@@ -1,9 +1,11 @@
 <?php
 
-use App\Models\Category;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
     return view('home',[
@@ -24,7 +26,7 @@ Route::get('/about', function () {
 Route::get('/blog', [PostController::class, 'index']); // 'index' tu nama method
 
 // Single Post route
-Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::get('posts/{post:slug}', [PostController::class, 'show']); // 'show' tu nama method
 
 
 Route::get('categories', function() {
@@ -33,6 +35,12 @@ Route::get('categories', function() {
         'categories' => Category::all() 
     ]);
 });
+
+//Route untuk login
+Route::get('login', [LoginController::class, 'index']); // 'index' tu nama method
+
+//Route untuk register
+Route::get('register', [RegisterController::class, 'index']); // 'index' tu nama method
 
 
 // // Route to display posts for a specific "category" identified by its slug
