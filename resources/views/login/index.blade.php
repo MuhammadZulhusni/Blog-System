@@ -3,6 +3,20 @@
 @section('container')
 <div class="max-w-md mx-auto mt-10 p-8 bg-white rounded-lg shadow-lg">
     <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
+    
+    <!-- Display Success Message -->
+    @if(session('success'))
+        <div class="mb-4 p-4 bg-green-100 border border-green-300 text-green-700 rounded">
+            {{ session('success') }}
+        </div>
+    @endif
+    <!-- Display Error Message -->
+    @if(session('error'))
+        <div class="mb-4 p-4 bg-red-100 border border-red-300 text-red-700 rounded">
+            {{ session('error') }}
+        </div>
+    @endif
+    
     <form action="/login" method="POST">
         @csrf
         <div class="mb-4">
