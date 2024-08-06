@@ -41,6 +41,7 @@ Route::get('login', [LoginController::class, 'index']); // 'index' tu nama metho
 
 //Route untuk register
 Route::get('register', [RegisterController::class, 'index']); // 'index' tu nama method
+Route::post('register', [RegisterController::class, 'store']);
 
 
 // // Route to display posts for a specific "category" identified by its slug
