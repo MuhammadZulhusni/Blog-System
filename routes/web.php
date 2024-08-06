@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('home',[
@@ -28,7 +29,7 @@ Route::get('/blog', [PostController::class, 'index']); // 'index' tu nama method
 // Single Post route
 Route::get('posts/{post:slug}', [PostController::class, 'show']); // 'show' tu nama method
 
-
+// Route untuk category page
 Route::get('categories', function() {
     return view('categories',[
         'title' => "Post Categories",
@@ -37,11 +38,17 @@ Route::get('categories', function() {
 });
 
 //Route untuk login
-Route::get('login', [LoginController::class, 'index']); // 'index' tu nama method
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest'); // 'index' tu nama method
+Route::post('/login', [LoginController::class, 'authenticate']); // 'authenticate' tu nama method
+Route::post('/logout', [LoginController::class, 'logout']);
 
 //Route untuk register
-Route::get('/register', [RegisterController::class, 'index']); // 'index' tu nama method
-Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');  
+Route::post('/register', [RegisterController::class, 'store']); // 'store' tu nama method
+
+//Route untuk dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+
 
 
 // // Route to display posts for a specific "category" identified by its slug
