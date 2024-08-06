@@ -9,8 +9,6 @@ class Post extends Model
 {
     use HasFactory;
 
-    // protected $fillable = ['title', 'excerpt', 'body'];
-    protected $quarded = ['id']; // Mean id x boleh di isi oleh user, selain dari id user boleh isi
     protected $with = ['author', 'category']; // Eager Loading
 
     // Define a relationship where each 'Post' belongs to a single 'Category'.
