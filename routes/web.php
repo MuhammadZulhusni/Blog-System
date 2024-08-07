@@ -1,12 +1,11 @@
 <?php
 
-use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPostController;
 
 Route::get('/', function () {
     return view('home',[
@@ -51,6 +50,8 @@ Route::get('/dashboard', function() {
     return view('dashboard.index');
 })->middleware('auth');
 
+//Route untuk My Posts(Backend)
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
 
 // // Route to display posts for a specific "category" identified by its slug
