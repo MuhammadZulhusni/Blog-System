@@ -13,7 +13,7 @@
 <body class="bg-gray-100">
 
     <div x-data="{ open: false }" class="flex h-screen">
-        @include('dashboard.layouts.sidebar')
+        @include('backend.dashboard.layouts.sidebar')
 
         <!-- Main Content -->
         <div class="flex-1 flex flex-col">

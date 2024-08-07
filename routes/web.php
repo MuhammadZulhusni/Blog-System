@@ -47,7 +47,7 @@ Route::post('/register', [RegisterController::class, 'store']); // 'store' tu na
 
 //Route untuk dashboard
 Route::get('/dashboard', function() {
-    return view('dashboard.index');
+    return view('backend.dashboard.index');
 })->middleware('auth');
 
 //Route untuk My Posts(Backend)
