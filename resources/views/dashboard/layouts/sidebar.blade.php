@@ -1,4 +1,4 @@
-<aside :class="{ 'translate-x-0': open, '-translate-x-full': !open }" class="fixed inset-y-0 left-0 w-64 bg-gray-800 text-white shadow-lg transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 z-50">
+<aside :class="{ 'translate-x-0': open, '-translate-x-full': !open }" class="fixed inset-y-0 left-0 w-64 bg-gray-900 text-white shadow-lg transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 z-50">
     <div class="flex items-center justify-between px-4 py-3 border-b border-gray-700">
         <!-- Logo and Company Name -->
         <div class="flex items-center">

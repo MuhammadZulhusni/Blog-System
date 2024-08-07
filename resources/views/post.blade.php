@@ -5,7 +5,7 @@
         <!-- Post Container -->
         <div class="bg-white shadow-md rounded-lg overflow-hidden mb-6">
             <!-- Card Image Top -->
-            <img src="https://via.placeholder.com/1200x400" class="w-full h-64 object-cover">
+            <img src="https://via.placeholder.com/1200x400" class="w-full h-64 object-cover" alt="Post Image">
             
             <div class="p-6">
                 <!-- Title -->
@@ -28,13 +28,12 @@
             </div>
         </div>
 
-        <!-- Back to posts link -->
-        <!-- href="{{ url()->previous() }}" -->
-        <a href="/blog" class="inline-flex items-center text-blue-500 hover:text-blue-700 text-lg font-medium">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <!-- Beautiful Back to posts button -->
+        <a href="/blog" class="inline-flex items-center text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50 text-lg font-medium py-2 px-6 rounded-lg shadow-md transition-colors duration-300">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
-            Back 
+            Back to Blog
         </a>
     </div>
 @endsection
