@@ -2,6 +2,11 @@
 
 @section('container')
 <div class="max-w-md mx-auto mt-10 p-8 bg-white rounded-lg shadow-lg">
+    <!-- Logo -->
+    <div class="flex justify-center mb-6">
+        <img src="https://cdn-icons-png.flaticon.com/128/10290/10290447.png" alt="Logo" class="h-16">
+    </div>
+    
     <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
     
     <!-- Display Success Message -->
@@ -33,10 +38,13 @@
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
             @enderror
         </div>
-        <div class="mb-4 text-sm text-center">
+        <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded hover:bg-indigo-700 focus:outline-none focus:shadow-outline mt-2">Login</button>
+        <div class="mt-4 text-sm text-center">
             <span>Not registered yet? <a href="/register" class="font-medium text-indigo-600 hover:text-indigo-500">Register now</a></span>
         </div>
-        <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded hover:bg-indigo-700 focus:outline-none focus:shadow-outline">Login</button>
+        <div class="mt-4 text-center"> <!-- href="{{ url()->previous() }}" -->
+            <a href="/" class="text-indigo-600 hover:text-indigo-800 ">Back</a>
+        </div>
     </form>
 </div>
 @endsection

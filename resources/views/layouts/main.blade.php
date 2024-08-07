@@ -10,13 +10,18 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
 </head>
 
-<body>
+<body class="flex flex-col min-h-screen">
+    @include('partials.navbar') <!-- Navigation bar -->
 
-     @include('partials.navbar') <!-- Ni akan ambil called file partials/navbar --> 
-     
-     @yield('container') <!-- Ni akan ambil dari child view like home,about,posts. So it will be difference based on child view data -->
+    <main class="flex-1">
+        @yield('container') <!-- Dynamic content -->
+    </main>
 
-     <!-- <script src="{{ asset('js/script.js') }}"></script> -->
+    @unless (request()->is('login') || request()->is('register'))
+        @include('partials.footer') <!-- Footer -->
+    @endunless
+
+    <!-- JavaScript file from the public folder -->
+    <script src="{{ asset('js/about.js') }}"></script>
 </body>
 </html>
- 

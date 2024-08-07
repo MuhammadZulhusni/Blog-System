@@ -1,4 +1,4 @@
-@extends('layouts.main') <!-- This tells the view to extend the layout from main.blade.php -->
+@extends('layouts.main')
 
 @section('container')
     <div class="max-w-6xl mx-auto px-4 py-6">
@@ -66,7 +66,7 @@
                         </h5>
                     </div>  
                     <p class="text-gray-600 mb-6">{{ $posts[0]->excerpt }}</p>
-                    <a href="/posts/{{ $posts[0]->slug }}" class="inline-block border border-blue-500 text-blue-500 font-semibold px-3 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition duration-300">Read more...</a>
+                    <a href="/posts/{{ $posts[0]->slug }}" class="inline-block border border-gray-900 text-white bg-gray-900 font-semibold px-3 py-2 rounded-lg hover:bg-white hover:text-gray-900 hover:border-gray-900 transition duration-300">Read more...</a>
                 </div>
             </div>
 
@@ -95,7 +95,7 @@
                             </h5>
                         </div>  
                         <p class="text-gray-600 mb-6 flex-grow">{{ $post->excerpt }}</p>
-                        <a href="/posts/{{ $post->slug }}" class="inline-block border border-blue-500 text-blue-500 font-semibold px-3 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition duration-300 mt-auto text-center">Read more...</a>
+                        <a href="/posts/{{ $post->slug }}" class="text-center inline-block border border-gray-900 text-white bg-gray-900 font-semibold px-3 py-2 rounded-lg hover:bg-white hover:text-gray-900 hover:border-gray-900 transition duration-300">Read more...</a>
                     </div>
                 </div>
             @endforeach
@@ -108,6 +108,5 @@
 @else
     <p>No post found</p>
 @endif
-
 
 @endsection
