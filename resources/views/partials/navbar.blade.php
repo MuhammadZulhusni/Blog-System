@@ -8,8 +8,8 @@
                 </a>
             </div>
 
-            <!-- Desktop Navigation -->
-            <div class="hidden sm:flex sm:items-center sm:space-x-8">
+            <!-- Navigation Links -->
+            <div class="hidden sm:flex sm:items-center flex-1 justify-center space-x-4">
                 @auth
                 <!-- User Menu -->
                 <div class="relative">
@@ -22,11 +22,7 @@
                     </button>
                     <div x-show="isUserMenuOpen" @click.away="isUserMenuOpen = false" class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg overflow-hidden z-50">
                         <div class="py-2">
-                            <a href="/dashboard" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">My Dashboard</a>
-                            <a href="/" :class="{'bg-gray-900 text-white': currentPage === '/', 'text-gray-800 hover:bg-gray-100': currentPage !== '/'}" class="block px-4 py-2">Home</a>
-                            <a href="/about" :class="{'bg-gray-900 text-white': currentPage === '/about', 'text-gray-800 hover:bg-gray-100': currentPage !== '/about'}" class="block px-4 py-2">About</a>
-                            <a href="/blog" :class="{'bg-gray-900 text-white': currentPage === '/blog', 'text-gray-800 hover:bg-gray-100': currentPage !== '/blog'}" class="block px-4 py-2">Blog</a>
-                            <a href="/categories" :class="{'bg-gray-900 text-white': currentPage === '/categories', 'text-gray-800 hover:bg-gray-100': currentPage !== '/categories'}" class="block px-4 py-2">Categories</a>
+                            <a href="/dashboard" :class="{'bg-gray-900 text-white': currentPage === '/dashboard', 'text-gray-800 hover:bg-gray-100': currentPage !== '/dashboard'}" class="block px-4 py-2">My Dashboard</a>
                             <form method="POST" action="/logout" class="py-2">
                                 @csrf
                                 <button type="submit" class="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100">Logout</button>
@@ -35,19 +31,22 @@
                     </div>
                 </div>
                 @else
-                <!-- Navigation Links -->
-                <div class="flex space-x-8">
-                    <a href="/" :class="{'bg-gray-900 text-white': currentPage === '/', 'text-gray-300 hover:bg-gray-700': currentPage !== '/'}" class="text-white rounded-md px-4 py-2">Home</a>
-                    <a href="/about" :class="{'bg-gray-900 text-white': currentPage === '/about', 'text-gray-300 hover:bg-gray-700': currentPage !== '/about'}" class="text-white rounded-md px-4 py-2">About</a>
-                    <a href="/blog" :class="{'bg-gray-900 text-white': currentPage === '/blog', 'text-gray-300 hover:bg-gray-700': currentPage !== '/blog'}" class="text-white rounded-md px-4 py-2">Blog</a>
-                    <a href="/categories" :class="{'bg-gray-900 text-white': currentPage === '/categories', 'text-gray-300 hover:bg-gray-700': currentPage !== '/categories'}" class="text-white rounded-md px-4 py-2">Categories</a>
-                </div>
-                <!-- Login Button -->
+                <!-- Navigation Links for Guests -->
+                <a href="/" :class="{'bg-gray-900 text-white': currentPage === '/', 'text-gray-300 hover:bg-gray-700': currentPage !== '/'}" class="text-white rounded-md px-4 py-2">Home</a>
+                <a href="/about" :class="{'bg-gray-900 text-white': currentPage === '/about', 'text-gray-300 hover:bg-gray-700': currentPage !== '/about'}" class="text-white rounded-md px-4 py-2">About</a>
+                <a href="/blog" :class="{'bg-gray-900 text-white': currentPage === '/blog', 'text-gray-300 hover:bg-gray-700': currentPage !== '/blog'}" class="text-white rounded-md px-4 py-2">Blog</a>
+                <a href="/categories" :class="{'bg-gray-900 text-white': currentPage === '/categories', 'text-gray-300 hover:bg-gray-700': currentPage !== '/categories'}" class="text-white rounded-md px-4 py-2">Categories</a>
+                @endauth
+            </div>
+
+            <!-- Login Button -->
+            <div class="flex items-center">
+                @guest
                 <a href="/login" class="flex items-center text-white rounded-md px-4 py-2 bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                     <img src="{{ asset('https://www.svgrepo.com/show/449958/user.svg') }}" alt="Login Icon" class="w-6 h-6 mr-2">
                     <span>Login</span>
                 </a>
-                @endauth
+                @endguest
             </div>
 
             <!-- Mobile Menu Button -->
@@ -71,10 +70,6 @@
             @auth
             <!-- Navigation Links for Authenticated Users -->
             <a href="/dashboard" :class="{'bg-gray-900 text-white': currentPage === '/dashboard', 'text-gray-300 hover:bg-gray-700': currentPage !== '/dashboard'}" class="block rounded-md px-3 py-2 text-base font-medium">My Dashboard</a>
-            <a href="/" :class="{'bg-gray-900 text-white': currentPage === '/', 'text-gray-300 hover:bg-gray-700': currentPage !== '/'}" class="block rounded-md px-3 py-2 text-base font-medium">Home</a>
-            <a href="/about" :class="{'bg-gray-900 text-white': currentPage === '/about', 'text-gray-300 hover:bg-gray-700': currentPage !== '/about'}" class="block rounded-md px-3 py-2 text-base font-medium">About</a>
-            <a href="/blog" :class="{'bg-gray-900 text-white': currentPage === '/blog', 'text-gray-300 hover:bg-gray-700': currentPage !== '/blog'}" class="block rounded-md px-3 py-2 text-base font-medium">Blog</a>
-            <a href="/categories" :class="{'bg-gray-900 text-white': currentPage === '/categories', 'text-gray-300 hover:bg-gray-700': currentPage !== '/categories'}" class="block rounded-md px-3 py-2 text-base font-medium">Categories</a>
             <form method="POST" action="/logout" class="mt-4">
                 @csrf
                 <button type="submit" class="block w-full px-4 py-2 text-white bg-gray-800 hover:bg-gray-700 rounded-md text-center">Logout</button>
