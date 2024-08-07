@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.main')
+@extends('backend.dashboard.layouts.main')
 
 @section('container')
     <div class="py-6">
