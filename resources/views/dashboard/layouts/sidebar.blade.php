@@ -17,6 +17,7 @@
             <img src="https://cdn-icons-png.flaticon.com/128/1828/1828673.png" alt="Dashboard Icon" class="w-5 h-5 mr-2">
             Dashboard
         </a>
+        <!-- Make sure route sama -->
         <a href="/dashboard/posts" :class="{'bg-gray-700 text-white': $page.url === '/posts', 'text-gray-300 hover:bg-gray-700 hover:text-white': $page.url !== '/posts'}" class="flex items-center px-4 py-2">
             <img src="https://cdn-icons-png.flaticon.com/128/3389/3389004.png" alt="Posts Icon" class="w-5 h-5 mr-2">
             My Posts
