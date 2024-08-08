@@ -13,7 +13,7 @@
                 <!-- Dropdown Menu for Navigation Links -->
                 @guest
                 <div class="relative">
-                    <button @click="isMenuOpen = !isMenuOpen" class="flex items-center text-white rounded-md px-4 py-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-300">
+                    <button @click="console.log('Menu button clicked'); isMenuOpen = !isMenuOpen" class="flex items-center text-white rounded-md px-4 py-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-300">
                         <span class="mr-2">Menu</span>
                         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -41,7 +41,7 @@
                 @auth
                 <!-- User Menu -->
                 <div class="relative">
-                    <button @click="isUserMenuOpen = !isUserMenuOpen" class="flex items-center text-white rounded-md px-4 py-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-300">
+                    <button @click="console.log('Menu button clicked'); isMenuOpen = !isMenuOpen" class="flex items-center text-white rounded-md px-4 py-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-300">
                         <img src="{{ asset('https://www.svgrepo.com/show/449958/user.svg') }}" alt="User Icon" class="w-6 h-6 mr-2">
                         <span>Welcome, {{ auth()->user()->name }}</span>
                         <svg class="w-5 h-5 ml-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
