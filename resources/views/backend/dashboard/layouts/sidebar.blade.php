@@ -13,23 +13,23 @@
         </button>
     </div>
     <nav class="mt-5">
-        <a href="/dashboard" :class="{'bg-gray-700 text-white': $page.url === '/dashboard', 'text-gray-300 hover:bg-gray-700 hover:text-white': $page.url !== '/dashboard'}" class="flex items-center px-4 py-2">
+        <a href="/dashboard" class="flex items-center px-4 py-2 {{ request()->is('dashboard') ? 'bg-gray-700 text-blue-500' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
             <img src="https://cdn-icons-png.flaticon.com/128/1828/1828673.png" alt="Dashboard Icon" class="w-5 h-5 mr-2">
             Dashboard
         </a>
         <!-- Make sure route sama -->
-        <a href="/dashboard/posts" :class="{'bg-gray-700 text-white': $page.url === '/posts', 'text-gray-300 hover:bg-gray-700 hover:text-white': $page.url !== '/posts'}" class="flex items-center px-4 py-2">
+        <a href="/dashboard/posts" class="flex items-center px-4 py-2 {{ request()->is('dashboard/posts') ? 'bg-gray-700 text-blue-500' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
             <img src="https://cdn-icons-png.flaticon.com/128/3389/3389004.png" alt="Posts Icon" class="w-5 h-5 mr-2">
             My Posts
         </a>
         <div class="absolute bottom-0 w-full border-t border-gray-700 mt-5">
-        <form method="POST" action="/logout" class="px-4 pb-3">
-            @csrf
-            <button type="submit" class="w-full px-4 py-2 text-gray-300 hover:text-white text-center transition-colors duration-300 flex flex-col items-center">
-                <img src="https://cdn-icons-png.flaticon.com/128/16470/16470837.png" alt="Logout Icon" class="w-6 h-6 mb-1"> <!-- Increased size -->
-                <span class="font-bold">Logout</span>
-            </button>
-        </form>
+            <form method="POST" action="/logout" class="px-4 pb-3">
+                @csrf
+                <button type="submit" class="w-full px-4 py-2 text-gray-300 hover:text-white text-center transition-colors duration-300 flex flex-col items-center">
+                    <img src="https://cdn-icons-png.flaticon.com/128/16470/16470837.png" alt="Logout Icon" class="w-6 h-6 mb-1"> <!-- Increased size -->
+                    <span class="font-bold">Logout</span>
+                </button>
+            </form>
         </div>
     </nav>
 </aside>

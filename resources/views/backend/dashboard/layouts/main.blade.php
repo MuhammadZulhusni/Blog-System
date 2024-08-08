@@ -11,8 +11,7 @@
 </head>
 
 <body class="bg-gray-100">
-
-    <div x-data="{ open: false }" class="flex h-screen">
+    <div x-data="{ open: false }" class="min-h-screen flex">
         @include('backend.dashboard.layouts.sidebar')
 
         <!-- Main Content -->
@@ -32,6 +31,5 @@
             </main>
         </div>
     </div>
-
 </body>
 </html>
