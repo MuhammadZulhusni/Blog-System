@@ -50,6 +50,7 @@ Route::get('/dashboard', function() {
     return view('backend.dashboard.index');
 })->middleware('auth');
 
+Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth'); 
 //Route untuk My Posts(Backend)
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 

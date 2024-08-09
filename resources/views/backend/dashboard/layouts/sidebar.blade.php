@@ -17,11 +17,12 @@
             <img src="https://cdn-icons-png.flaticon.com/128/1828/1828673.png" alt="Dashboard Icon" class="w-5 h-5 mr-2">
             Dashboard
         </a>
-        <!-- Make sure route sama -->
-        <a href="/dashboard/posts" class="flex items-center px-4 py-2 {{ request()->is('dashboard/posts') ? 'bg-gray-700 text-blue-500' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+        <!--  link will be active if the user is on any route that starts with /dashboard/posts. -->
+        <a href="/dashboard/posts" class="flex items-center px-4 py-2 {{ request()->is('dashboard/posts*') ? 'bg-gray-700 text-blue-500' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
             <img src="https://cdn-icons-png.flaticon.com/128/3389/3389004.png" alt="Posts Icon" class="w-5 h-5 mr-2">
             My Posts
         </a>
+
         <div class="absolute bottom-0 w-full border-t border-gray-700 mt-5">
             <form method="POST" action="/logout" class="px-4 pb-3">
                 @csrf

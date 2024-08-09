@@ -2,7 +2,17 @@
 
 @section('container')
     <div class="py-6">
-        <h1 class="text-2xl font-bold text-gray-900 mb-2">My Posts</h1>
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold text-gray-900">My Posts</h1>
+            <!-- Create New Post Button -->
+            <a href="/dashboard/posts/create" class="inline-flex items-center bg-green-600 hover:bg-green-500 text-white text-sm font-medium py-2 px-4 rounded-lg shadow-md transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                New Post
+            </a>
+        </div>
+
         <!-- Divider Line -->
         <hr class="border-gray-300 mb-4"> 
 
