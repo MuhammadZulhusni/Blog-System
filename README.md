@@ -16,6 +16,7 @@ Welcome to the Blog System! This web application, built with the Laravel framewo
 - Composer
 - Laravel Installer
 - MySQL or another compatible database
+- Node.js and npm
 
 ### Steps
 
@@ -26,7 +27,7 @@ Welcome to the Blog System! This web application, built with the Laravel framewo
     cd Blog-System
     ```
 
-2. **Install Dependencies**
+2. **Install PHP Dependencies**
 
     ```bash
     composer install
@@ -60,7 +61,7 @@ Welcome to the Blog System! This web application, built with the Laravel framewo
     DB_PASSWORD=
     ```
 
-7. **Run Migrations and Seed Data**
+6. **Run Migrations and Seed Data**
 
     Run the following command to migrate the database and seed it with initial data:
 
@@ -73,7 +74,21 @@ Welcome to the Blog System! This web application, built with the Laravel framewo
     - Recreate the tables as per the migration files.
     - Seed the database with initial data specified in the seeders.
 
-8. **Start the Development Server**
+7. **Install Node.js Dependencies**
+
+    ```bash
+    npm install
+    ```
+
+8. **Compile Assets**
+
+    Compile your CSS and JavaScript assets:
+
+    ```bash
+    npm run dev
+    ```
+
+9. **Start the Development Server**
 
     ```bash
     php artisan serve
