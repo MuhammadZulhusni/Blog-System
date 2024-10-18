@@ -8,6 +8,17 @@
     @vite('resources/css/app.css')
     <link rel="icon" href="https://www.svgrepo.com/show/378808/firefox-developer-edition-57-70.svg" type="image/x-icon">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+    <!-- Trix Editor -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
+
+    <!-- Buang button upload file di text editor form -->
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"]{
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-100">

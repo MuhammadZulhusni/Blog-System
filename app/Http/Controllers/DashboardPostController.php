@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardPostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('backend.dashboard.posts.index', [
@@ -23,7 +21,10 @@ class DashboardPostController extends Controller
      */
     public function create()
     {
-        return view('backend.dashboard.posts.create');
+        return view('backend.dashboard.posts.create',
+    [
+        "categories" => Category::all()
+    ]);
     }
 
     /**
@@ -31,7 +32,7 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-        
+        return $request;
     }
 
     /**
