@@ -2,12 +2,13 @@
 
 @section('container')
 <div class="py-6">
-    <h1 class="text-2xl font-bold text-gray-900 mb-2">Create New Post</h1>
+    <h1 class="text-2xl font-bold text-gray-900 mb-2 text-center">Create New Post</h1>
     <!-- Divider Line -->
     <hr class="border-gray-300 mb-4">
 
     <!-- Form Container -->
-    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <div class="w-full max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+
         <form action="/dashboard/posts" method="POST">
             @csrf
             <!-- Title Input -->
@@ -20,6 +21,24 @@
             <div class="mb-6">
                 <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
                 <input type="text" name="slug" id="slug" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter post slug">
+            </div>
+
+            <!-- Category Input -->
+            <div class="mb-4">
+                <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                <select class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent sm:text-sm" name="category_id" required>
+                    <option value="" disabled selected>Select a category</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            
+            <!-- Body Input -->
+            <div class="mb-6">
+                <label for="body" class="block text-sm font-medium text-gray-700">Body</label>
+                    <input id="body" type="hidden" name="body">
+                    <trix-editor input="body"></trix-editor>
             </div>
 
             <!-- Create Post Button -->
@@ -41,5 +60,10 @@
             .then(response => response.json())
             .then(data => slug.value = data.slug);
     });
+
+    /* Untuk hilangkan button upload file di text editor form */
+    document.addEventListener('trix-file-accept', function(e) {
+        e.preventDefault();
+    })
 </script>
 @endsection
