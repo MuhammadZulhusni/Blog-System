@@ -14,13 +14,19 @@
             <!-- Title Input -->
             <div class="mb-4">
                 <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                <input type="text" name="title" id="title" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter post title">
+                <input type="text" name="title" id="title" required autofocus value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter post title">
+                @error('title')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
             </div>
 
             <!-- Slug Input -->
             <div class="mb-6">
                 <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
-                <input type="text" name="slug" id="slug" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter post slug">
+                <input type="text" name="slug" id="slug" required value="{{ old('slug') }}" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('slug') border-red-500 @enderror" placeholder="Enter post slug">
+                @error('slug')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
             </div>
 
             <!-- Category Input -->
@@ -37,9 +43,16 @@
             <!-- Body Input -->
             <div class="mb-6">
                 <label for="body" class="block text-sm font-medium text-gray-700">Body</label>
-                    <input id="body" type="hidden" name="body">
-                    <trix-editor input="body"></trix-editor>
+                <input id="body" 
+                    type="hidden" 
+                    name="body" 
+                    value="{{ old('body') }}">
+                <trix-editor input="body" class="@error('body') border-red-500 @enderror"></trix-editor>
+                @error('body')
+                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                @enderror
             </div>
+
 
             <!-- Create Post Button -->
             <div class="flex justify-end">
