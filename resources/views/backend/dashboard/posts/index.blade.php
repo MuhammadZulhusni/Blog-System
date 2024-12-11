@@ -14,11 +14,11 @@
         </div>
 
         @if(session()->has('success'))
-    <div class="alert alert-success bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded-lg shadow-md" role="alert">
-        <strong class="font-bold">Success!</strong>
-        <span class="block sm:inline">{{ session('success') }}</span>
-    </div>
-@endif
+        <div class="alert alert-success bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded-lg shadow-md" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+        @endif
 
 
         <!-- Divider Line -->
@@ -47,9 +47,74 @@
                                 <div class="flex space-x-2">
                                     <a href="#" class="text-blue-600 hover:text-blue-900">Edit</a>
                                     <a href="/dashboard/posts/{{ $post->slug  }}" class="text-green-600 hover:text-green-900">View</a>
-                                    <form action="#" method="POST" class="inline-block">
-                                        <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
-                                    </form>
+
+                                    <!-- Button delete & Modal -->
+                                    <div x-data="{ openModal: false }" class="inline-block">
+                                    <!-- Trigger Button -->
+                                    <button 
+                                        type="button" 
+                                        class="text-red-600 hover:text-red-700 font-semibold transition duration-300 transform hover:scale-105"
+                                        @click="openModal = true">
+                                        Delete
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div 
+                                        x-show="openModal" 
+                                        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+                                        x-cloak
+                                        x-transition:enter="transition ease-out duration-300"
+                                        x-transition:enter-start="opacity-0 scale-90"
+                                        x-transition:enter-end="opacity-100 scale-100"
+                                        x-transition:leave="transition ease-in duration-200"
+                                        x-transition:leave-start="opacity-100 scale-100"
+                                        x-transition:leave-end="opacity-0 scale-90"
+                                    >
+                                        <!-- Modal Content -->
+                                        <div class="relative bg-white rounded-xl shadow-lg w-full max-w-md p-6 overflow-hidden">
+                                            <!-- Close Button -->
+                                            <button 
+                                                type="button" 
+                                                @click="openModal = false" 
+                                                class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 focus:outline-none">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </button>
+
+                                            <!-- Modal Header -->
+                                            <div class="text-center">
+                                                <h2 class="text-2xl font-bold text-gray-900">Confirm Deletion</h2>
+                                                <p class="mt-2 text-sm text-gray-500">
+                                                    Are you sure you want to delete this post?
+                                                </p>
+                                            </div>
+
+                                            <!-- Modal Footer -->
+                                            <div class="mt-6 flex justify-center space-x-4">
+                                                <!-- Cancel Button -->
+                                                <button 
+                                                    type="button" 
+                                                    @click="openModal = false" 
+                                                    class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
+                                                    Cancel
+                                                </button>
+
+                                                <!-- Delete Button -->
+                                                <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="inline-block">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button 
+                                                        type="submit" 
+                                                        class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Button delete & Modal -->
                                 </div>
                             </td>
                         </tr>
