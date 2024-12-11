@@ -12,6 +12,16 @@ class Post extends Model
 
     protected $with = ['author', 'category']; // Eager Loading
 
+    // Define the fillable fields to allow mass assignment
+    protected $fillable = [
+        'title', 
+        'slug', 
+        'category_id', 
+        'body', 
+        'user_id', 
+        'excerpt'
+    ];
+
     // Define a relationship where each 'Post' belongs to a single 'Category'.
     // Each Post belongs to one Category. This means a post can be associated with only one category.
     // A Category can have many Posts. This means multiple posts can be associated with the same category.
