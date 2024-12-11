@@ -13,6 +13,14 @@
             </a>
         </div>
 
+        @if(session()->has('success'))
+    <div class="alert alert-success bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded-lg shadow-md" role="alert">
+        <strong class="font-bold">Success!</strong>
+        <span class="block sm:inline">{{ session('success') }}</span>
+    </div>
+@endif
+
+
         <!-- Divider Line -->
         <hr class="border-gray-300 mb-4"> 
 
