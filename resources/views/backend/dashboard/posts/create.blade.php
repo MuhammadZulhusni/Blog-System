@@ -35,7 +35,11 @@
                 <select class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent sm:text-sm" name="category_id" required>
                     <option value="" disabled selected>Select a category</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @if(old('category_id') == $category->id)
+                         <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                        @else
+                         <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
