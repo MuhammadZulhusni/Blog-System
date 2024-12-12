@@ -60,7 +60,7 @@
             <!-- Edit and Delete Buttons -->
             <div class="flex space-x-4">
                 <!-- Edit Button -->
-                <a href="{{ route('posts.edit', $post->id) }}" class="inline-flex items-center text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 text-lg font-medium py-2 px-6 rounded-lg shadow-md transition-colors duration-300">
+                <a href="/dashboard/posts/{{ $post->slug }}/edit" class="inline-flex items-center text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 text-lg font-medium py-2 px-6 rounded-lg shadow-md transition-colors duration-300">
                     Edit
                 </a>
 
