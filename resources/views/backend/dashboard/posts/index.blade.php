@@ -45,7 +45,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $post->category->name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex space-x-2">
-                                    <a href="#" class="text-blue-600 hover:text-blue-900">Edit</a>
+                                    <a href="/dashboard/posts/{{ $post->slug }}/edit" class="text-blue-600 hover:text-blue-900">Edit</a>
                                     <a href="/dashboard/posts/{{ $post->slug  }}" class="text-green-600 hover:text-green-900">View</a>
 
                                     <!-- Button delete & Modal -->
