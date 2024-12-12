@@ -60,13 +60,13 @@
 
             <!-- Button Section -->
             <div class="flex justify-between items-center">
-                <!-- Back Button -->
-                <a href="/dashboard/posts" class="inline-flex items-center text-gray-700 hover:text-blue-600 border border-gray-300 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg font-medium py-2 px-6 rounded-lg shadow-sm transition-all duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M15 18l-6-6 6-6" />
-                    </svg>
-                    Back
-                </a>
+            <!-- Back Button -->
+            <a href="javascript:void(0);" onclick="window.history.back();" class="inline-flex items-center text-gray-700 hover:text-blue-600 border border-gray-300 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg font-medium py-2 px-6 rounded-lg shadow-sm transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 18l-6-6 6-6" />
+                </svg>
+                Back
+            </a>
             <!-- Action Buttons -->
             <div class="flex space-x-4">
                 <!-- Update Post Button -->
