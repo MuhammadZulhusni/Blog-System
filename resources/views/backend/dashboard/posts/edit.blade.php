@@ -2,19 +2,20 @@
 
 @section('container')
 <div class="py-6">
-    <h1 class="text-2xl font-bold text-gray-900 mb-2 text-center">Create New Post</h1>
+    <h1 class="text-2xl font-bold text-gray-900 mb-2 text-center">Edit Post</h1>
     <!-- Divider Line -->
     <hr class="border-gray-300 mb-4">
 
     <!-- Form Container -->
     <div class="w-full max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg">
 
-        <form action="/dashboard/posts" method="POST">
+        <form action="/dashboard/posts/{{ $post->slug }}" method="POST">
+            @method('put')
             @csrf
             <!-- Title Input -->
             <div class="mb-4">
                 <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                <input type="text" name="title" id="title" required autofocus value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter post title">
+                <input type="text" name="title" id="title" required autofocus value="{{ old('title', $post->title) }}" class="form-control @error('title') is-invalid @enderror block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter post title">
                 @error('title')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
@@ -23,7 +24,7 @@
             <!-- Slug Input -->
             <div class="mb-6">
                 <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
-                <input type="text" name="slug" id="slug" required value="{{ old('slug') }}" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('slug') border-red-500 @enderror" placeholder="Enter post slug">
+                <input type="text" name="slug" id="slug" required value="{{ old('slug', $post->slug) }}" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('slug') border-red-500 @enderror" placeholder="Enter post slug">
                 @error('slug')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
@@ -35,7 +36,7 @@
                 <select class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent sm:text-sm" name="category_id" required>
                     <option value="" disabled selected>Select a category</option>
                     @foreach ($categories as $category)
-                        @if(old('category_id') == $category->id)
+                        @if(old('category_id', $post->category_id) == $category->id)
                          <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                         @else
                          <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -50,30 +51,28 @@
                 <input id="body" 
                     type="hidden" 
                     name="body" 
-                    value="{{ old('body') }}">
+                    value="{{ old('body', $post->body) }}">
                 <trix-editor input="body" class="@error('body') border-red-500 @enderror"></trix-editor>
                 @error('body')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
             </div>
 
-
             <!-- Button Section -->
             <div class="flex justify-between items-center">
                 <!-- Back Button -->
-                <a href="/dashboard/posts" class="inline-flex items-center text-gray-700 hover:text-blue-600 border border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg font-medium py-2 px-6 rounded-lg shadow-sm transition-all duration-300">
+                <a href="/dashboard/posts" class="inline-flex items-center text-gray-700 hover:text-blue-600 border border-gray-300 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg font-medium py-2 px-6 rounded-lg shadow-sm transition-all duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M15 18l-6-6 6-6" />
                     </svg>
                     Back
                 </a>
-
-                <!-- Create Post Button -->
-                <div class="flex justify-end">
-                    <button type="submit" class="inline-flex items-center text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 text-lg font-medium py-2 px-6 rounded-lg shadow-md transition-colors duration-300">
-                        Create Post
-                    </button>
-                </div>
+            <!-- Action Buttons -->
+            <div class="flex space-x-4">
+                <!-- Update Post Button -->
+                <button type="submit" class="inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 border border-blue-600 hover:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg font-medium py-2 px-6 rounded-lg shadow-sm transition-all duration-300">
+                    Update Post
+                </button>
             </div>
             </div>
         </form>
