@@ -9,7 +9,7 @@
     <!-- Form Container -->
     <div class="w-full max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg">
 
-        <form action="/dashboard/posts" method="POST">
+        <form action="/dashboard/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Title Input -->
             <div class="mb-4">
@@ -44,6 +44,15 @@
                 </select>
             </div>
             
+            <!-- Image Upload Input -->
+            <div class="mb-6">
+                <label for="image" class="block text-sm font-medium text-gray-700">Upload Image</label>
+                <input type="file" name="image" id="image" class="mt-1 block w-full text-gray-700 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-500 sm:text-sm">
+                @error('image')
+                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                @enderror
+            </div>
+
             <!-- Body Input -->
             <div class="mb-6">
                 <label for="body" class="block text-sm font-medium text-gray-700">Body</label>
@@ -56,7 +65,6 @@
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
             </div>
-
 
             <!-- Button Section -->
             <div class="flex justify-between items-center">
@@ -74,7 +82,6 @@
                         Create Post
                     </button>
                 </div>
-            </div>
             </div>
         </form>
     </div>
