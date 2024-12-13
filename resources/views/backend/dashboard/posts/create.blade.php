@@ -47,9 +47,14 @@
             <!-- Image Upload Input -->
             <div class="mb-6">
                 <label for="image" class="block text-sm font-medium text-gray-700">Upload Image</label>
-                <input type="file" name="image" id="image" class="mt-1 block w-full text-gray-700 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-500 sm:text-sm">
+                <input 
+                    type="file" 
+                    name="image" 
+                    id="image" 
+                    class="mt-1 block w-full text-gray-700 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-500 sm:text-sm @error('image') border-red-500 @enderror"
+                >
                 @error('image')
-                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
