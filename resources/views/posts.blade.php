@@ -44,14 +44,6 @@
         @if($posts->count())
             <!-- Hero Post -->
             <div class="bg-white shadow-xl rounded-lg overflow-hidden mb-12">
-                <div class="relative">
-                    <img src="{{ $posts[0]->image ?? 'https://via.placeholder.com/600x400' }}" class="w-full h-64 object-cover">
-                    <div class="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black via-transparent to-transparent text-white">
-                        <a href="/blog?category={{ $posts[0]->category->slug }}" class="text-xl font-semibold hover:text-blue-300 transition duration-300">
-                            {{ $posts[0]->category->name }}
-                        </a>
-                    </div>
-                </div>
                 <div class="p-8">
                     <h2 class="text-3xl font-bold text-gray-900 mb-4 hover:text-blue-700 transition duration-300">
                         <a href="/posts/{{ $posts[0]->slug }}">{{ $posts[0]->title }}</a>
@@ -81,14 +73,6 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($posts->skip(1) as $post)
                     <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                        <div class="relative">
-                            <img src="{{ $post->image ?? 'https://via.placeholder.com/150' }}" class="w-full h-48 object-cover">
-                            <div class="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black via-transparent to-transparent text-white">
-                                <a href="/blog?category={{ $post->category->slug }}" class="text-sm font-semibold hover:text-blue-300">
-                                    {{ $post->category->name }}
-                                </a>
-                            </div>
-                        </div>
                         <div class="p-6">
                             <h2 class="text-2xl font-bold text-gray-900 mb-2 hover:text-blue-700">
                                 <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>

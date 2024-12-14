@@ -22,10 +22,9 @@ class DashboardPostController extends Controller
      */
     public function create()
     {
-        return view('backend.dashboard.posts.create',
-    [
-        "categories" => Category::all()
-    ]);
+        return view('backend.dashboard.posts.create', [
+            "categories" => Category::all()
+        ]);
     }
 
     /**
@@ -33,24 +32,22 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-
-        $validatedData = $request->validate([ 
+        // Validate the incoming request data
+        $validatedData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|unique:posts',
             'category_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'body' => 'required'
         ]);
-
-        if($request->file('image')) {
-            $validateData['image'] = $request->file('image')->store('post-images');
-        }
-
+    
+        // Add the authenticated user ID and excerpt to the validated data
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
-
+    
+        // Insert the validated data into the posts table
         Post::create($validatedData);
-
+    
+        // Redirect back with a success message
         return redirect('/dashboard/posts')->with('success', 'New post has been added!');
     }
 
@@ -59,7 +56,7 @@ class DashboardPostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('backend.dashboard.posts.show',[
+        return view('backend.dashboard.posts.show', [
             'post' => $post
         ]);
     }
@@ -69,11 +66,10 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('backend.dashboard.posts.edit',
-    [
-        "post" => $post,
-        "categories" => Category::all()
-    ]);
+        return view('backend.dashboard.posts.edit', [
+            "post" => $post,
+            "categories" => Category::all()
+        ]);
     }
 
     /**
@@ -93,8 +89,8 @@ class DashboardPostController extends Controller
 
         $validateData = $request->validate($rules);
 
-        $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+        $validateData['user_id'] = auth()->user()->id;
+        $validateData['excerpt'] = Str::limit(strip_tags($request->body), 200);
 
         Post::where('id', $post->id)
             ->update($validateData);
