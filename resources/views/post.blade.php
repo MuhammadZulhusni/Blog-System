@@ -4,8 +4,6 @@
     <div class="max-w-4xl mx-auto px-4 py-6">
         <!-- Post Container -->
         <div class="bg-white shadow-md rounded-lg overflow-hidden mb-6">
-            <!-- Card Image Top -->
-            <img src="https://via.placeholder.com/1200x400" class="w-full h-64 object-cover" alt="Post Image">
             
             <div class="p-6">
                 <!-- Title -->

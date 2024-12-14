@@ -35,12 +35,10 @@
 
         <!-- Post Container -->
         <div class="bg-white shadow-md rounded-lg overflow-hidden mb-6">
-            <!-- Card Image Top -->
-            <img src="https://via.placeholder.com/1200x400" class="w-full h-64 object-cover" alt="Post Image">
-            
             <div class="p-6">
                 <!-- Title -->
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ $post->title }}</h2>
+
 
                 <!-- Content -->
                 <div class="text-gray-700 leading-relaxed">
