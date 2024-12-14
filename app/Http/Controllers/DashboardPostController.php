@@ -11,16 +11,32 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardPostController extends Controller
 {
-    // Method for showing the total posts on the dashboard
+    // Method for showing the stats on the dashboard
     public function dashboard()
     {
+        // Count the total posts by the authenticated user
         $totalPosts = Post::where('user_id', Auth::id())->count();
-
-        return view('backend.dashboard.index', [
-            'totalPosts' => $totalPosts,
-        ]);
+        
+        // Fetch the latest post by the authenticated user
+        $latestPost = Post::where('user_id', Auth::id())->latest()->first();
+        
+        // Get post distribution by category (count of posts in each category, filtered by the authenticated user)
+        $postsPerCategory = Category::withCount(['posts' => function ($query) {
+            $query->where('user_id', Auth::id()); // Only count posts for the authenticated user
+        }])->get();
+        
+        // Prepare data for passing to the frontend for the chart
+        $postsPerCategoryData = $postsPerCategory->map(function ($category) {
+            return [
+                'category_name' => $category->name,
+                'post_count' => $category->posts_count,
+            ];
+        });
+    
+        // Pass the data to the view
+        return view('backend.dashboard.index', compact('totalPosts', 'latestPost', 'postsPerCategoryData'));
     }
-
+    
     // Method for showing all posts
     public function index()
     {

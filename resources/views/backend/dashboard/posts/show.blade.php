@@ -50,7 +50,7 @@
         <!-- Buttons -->
         <div class="flex justify-between items-center">
             <!-- Back to My Posts Button -->
-            <a href="/dashboard/posts" class="inline-flex items-center text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50 text-lg font-medium py-2 px-6 rounded-lg shadow-md transition-colors duration-300">
+            <a href="javascript:history.back()" class="inline-flex items-center text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50 text-lg font-medium py-2 px-6 rounded-lg shadow-md transition-colors duration-300">
                 <img src="https://cdn-icons-png.flaticon.com/128/10238/10238209.png" class="w-5 h-5 mr-2" alt="Back Icon">
                 Back to My Posts
             </a>
