@@ -12,7 +12,7 @@
         <div class="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
             <h1 class="text-6xl font-extrabold mb-4">About Us</h1>
             <p class="text-xl mb-8 max-w-3xl">Discover more about our blog system, our mission, and the driving forces behind our work.</p>
-            <a href="#main-content" class="inline-block px-6 py-3 text-lg font-semibold text-white border border-white rounded-lg bg-transparent hover:bg-gray-900 hover:border-gray-900 hover:text-white transition duration-300">Explore More</a>
+            <a href="#main-content" class="inline-block px-6 py-3 text-lg font-semibold text-white border border-white rounded-lg bg-transparent hover:bg-blue-600 hover:border-blue-600 hover:text-white transition duration-300">Explore More</a>
         </div>
     </div>
 
@@ -41,7 +41,7 @@
         <div class="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
             <h1 class="text-5xl font-extrabold mb-4">Powered by Modern Technology</h1>
             <p class="text-lg mb-8 max-w-3xl">Our blog system is built with Laravel and styled using Tailwind CSS, combining powerful backend functionality with sleek, responsive design. Discover why these technologies make our system stand out.</p>
-            <a href="#tech-details" class="inline-block px-6 py-3 text-lg font-semibold text-white border border-white rounded-lg bg-transparent hover:bg-gray-900 hover:border-gray-700 hover:text-white transition duration-300">Learn More</a>
+            <a href="#tech-details" class="inline-block px-6 py-3 text-lg font-semibold text-white border border-white rounded-lg bg-transparent hover:bg-blue-600 hover:border-blue-600 hover:text-white transition duration-300">Learn More</a>
         </div>
     </div>
 
