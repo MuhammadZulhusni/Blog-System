@@ -5,7 +5,7 @@
     <div class="relative bg-gray-900 text-white h-[80vh]">
         <!-- Background Image -->
         <div class="absolute inset-0">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/212b34104893379.5f6cc87656bf0.gif" alt="Hero Image" class="w-full h-full object-cover"">
+            <img src="https://i.pinimg.com/originals/55/01/60/5501609ee45d514d1f2c4a63502045e2.gif" alt="Hero Image" class="w-full h-full object-cover"">
             <div class="absolute inset-0 bg-black opacity-50"></div>
         </div>
         <!-- Hero Content -->

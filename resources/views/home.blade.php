@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="relative bg-gray-900 text-white h-[80vh]"> <!-- Adjust height here -->
+    <div class="relative bg-gray-900 text-white h-[80vh]"> 
         <!-- Background GIF -->
         <div class="absolute inset-0">
             <img src="https://i.pinimg.com/originals/55/01/60/5501609ee45d514d1f2c4a63502045e2.gif" alt="Background GIF" class="w-full h-full object-cover">
@@ -9,17 +9,19 @@
         <div class="absolute inset-0 bg-black opacity-60"></div>
         <div class="relative container mx-auto py-16 px-4 sm:px-6 lg:px-8 text-center flex flex-col justify-center h-full">
             <!-- Animated Heading -->
-            <h1 class="text-5xl font-extrabold sm:text-6xl lg:text-7xl mb-4 animate-chill">
+            <h1 class="text-5xl font-extrabold sm:text-6xl lg:text-7xl mb-4 animate-heading">
                 Welcome to Blog System
             </h1>
             <!-- Animated Paragraph -->
-            <p class="text-lg sm:text-xl lg:text-2xl mb-8 animate-chill-2">
+            <p class="text-lg sm:text-xl lg:text-2xl mb-8 animate-paragraph">
                 Discover insightful articles, connect with other writers, and share your thoughts with the world.
             </p>
             <div class="flex justify-center">
-    <a href="/blog" class="inline-block px-6 py-3 text-lg font-semibold text-white border border-white rounded-lg bg-transparent hover:bg-blue-600 hover:border-blue-600 hover:text-white transition duration-300">Explore Blog Posts &raquo;</a>
-</div>
-
+                <!-- Animated Button -->
+                <a href="/blog" class="inline-block px-6 py-3 text-lg font-semibold text-white border border-white rounded-lg bg-transparent hover:bg-blue-600 hover:border-blue-600 hover:text-white transition duration-300 transform hover:-translate-y-1 hover:scale-105 animate-button">
+                    Explore Blog Posts &raquo;
+                </a>
+            </div>
         </div>
     </div>
 

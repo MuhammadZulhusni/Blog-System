@@ -28,7 +28,7 @@
                             <input class="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" 
                                 placeholder="Search for article" type="text" name="search" value="{{ request('search') }}" autocomplete="off">
                         </div>
-                        <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-gray-800 hover:bg-gray-600 border-2 border-white">
+                        <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-gray-900 hover:bg-gray-700 border-2 border-gray-900">
                             Search
                         </button>
                     </div>
@@ -42,53 +42,54 @@
         </div>
 
         @if($posts->count())
-            <!-- Hero Post (First Post) -->
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-12 hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out">
-                <div class="p-8">
-                    <h2 class="text-4xl font-extrabold text-gray-900 mb-2 hover:text-indigo-600">
-                        <a href="/posts/{{ $posts[0]->slug }}">{{ $posts[0]->title }}</a>
-                    </h2>
-                    <div class="flex items-center mb-4 text-sm text-gray-600">
-                        <span>By </span>
-                        @if($posts[0]->author)
-                            <a href="/blog?author={{ $posts[0]->author->username }}" class="text-indigo-500 hover:text-indigo-700 ml-1">{{ $posts[0]->author->name }}</a>
-                        @else
-                            <span class="text-gray-500">Unknown Author</span>
-                        @endif
-                        <span class="ml-2">{{ $posts[0]->created_at->diffForHumans() }}</span>
-                    </div>
-                    <p class="text-lg text-gray-700 mb-6">{{ $posts[0]->excerpt }}</p>
-                    <a href="/posts/{{ $posts[0]->slug }}" class="inline-block py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md transition duration-300 ease-in-out transform hover:bg-indigo-700 hover:scale-105">
-                        Read more...
-                    </a>
+        <!-- Hero Post (First Post) -->
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-12 hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out border border-gray-700">
+            <div class="p-8">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-2 hover:text-indigo-600">
+                    <a href="/posts/{{ $posts[0]->slug }}">{{ $posts[0]->title }}</a>
+                </h2>
+                <div class="flex items-center mb-4 text-sm text-gray-600">
+                    <span>By </span>
+                    @if($posts[0]->author)
+                        <a href="/blog?author={{ $posts[0]->author->username }}" class="text-indigo-500 hover:text-indigo-700 ml-1">{{ $posts[0]->author->name }}</a>
+                    @else
+                        <span class="text-gray-500">Unknown Author</span>
+                    @endif
+                    <span class="ml-2">{{ $posts[0]->created_at->diffForHumans() }}</span>
                 </div>
+                <p class="text-lg text-gray-700 mb-6">{{ $posts[0]->excerpt }}</p>
+                <a href="/posts/{{ $posts[0]->slug }}" class="inline-block py-2 px-4 bg-gray-900 text-white font-semibold rounded-md transition duration-300 ease-in-out transform hover:bg-gray-700 hover:scale-105">
+                    Read more...
+                </a>
             </div>
+        </div>
 
-            <!-- Remaining Posts -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach ($posts->skip(1) as $post)
-                    <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out">
-                        <div class="p-6">
-                            <h2 class="text-2xl font-semibold text-gray-900 mb-2 hover:text-indigo-600">
-                                <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
-                            </h2>
-                            <div class="flex items-center mb-4 text-sm text-gray-600">
-                                <span>By </span>
-                                @if($post->author)
-                                    <a href="/blog?author={{ $post->author->username }}" class="text-indigo-500 hover:text-indigo-700 ml-1">{{ $post->author->name }}</a>
-                                @else
-                                    <span class="text-gray-500">Unknown Author</span>
-                                @endif
-                                <span class="ml-2">{{ $post->created_at->diffForHumans() }}</span>
-                            </div>
-                            <p class="text-md text-gray-600 mb-6">{{ $post->excerpt }}</p>
-                            <a href="/posts/{{ $post->slug }}" class="inline-block py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md transition duration-300 ease-in-out transform hover:bg-indigo-700 hover:scale-105">
-                                Read more...
-                            </a>
+        <!-- Remaining Posts -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            @foreach ($posts->skip(1) as $post)
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out border border-gray-700">
+                    <div class="p-6">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-2 hover:text-indigo-600">
+                            <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
+                        </h2>
+                        <div class="flex items-center mb-4 text-sm text-gray-600">
+                            <span>By </span>
+                            @if($post->author)
+                                <a href="/blog?author={{ $post->author->username }}" class="text-indigo-500 hover:text-indigo-700 ml-1">{{ $post->author->name }}</a>
+                            @else
+                                <span class="text-gray-500">Unknown Author</span>
+                            @endif
+                            <span class="ml-2">{{ $post->created_at->diffForHumans() }}</span>
                         </div>
+                        <p class="text-md text-gray-600 mb-6">{{ $post->excerpt }}</p>
+                        <a href="/posts/{{ $post->slug }}" class="inline-block py-2 px-4 bg-gray-900 text-white font-semibold rounded-md transition duration-300 ease-in-out transform hover:bg-gray-700 hover:scale-105">
+                            Read more...
+                        </a>
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
+        </div>
+
         @else
             <p class="text-gray-600">No posts found.</p>
         @endif
@@ -98,4 +99,5 @@
             {{ $posts->links() }}
         </div>
     </div>
+
 @endsection
