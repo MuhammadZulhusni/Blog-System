@@ -1,21 +1,22 @@
 @extends('backend.dashboard.layouts.main')
 
 @section('container')
-    <div class="py-6">
-        <!-- Welcome Section -->
-        <div class="mb-6">
-            <h1 class="text-3xl font-bold text-gray-900">Welcome, {{ auth()->user()->username }} 👋</h1>
-            You're logged in as {{ auth()->user()->name }} ({{ auth()->user()->email }})
-            <hr class="border-gray-300 mb-6">
-        </div>
+        <div class="py-6">
+            <!-- Welcome Section -->
+            <div class="mb-6">
+                <h1 class="text-3xl font-bold text-gray-900">Welcome, {{ auth()->user()->username }} 👋</h1>
+                You're logged in as {{ auth()->user()->name }} ({{ auth()->user()->email }})
+                <hr class="border-gray-300 mb-6">
+            </div>
 
-        <!-- Stats Section -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6">
+            <!-- Stats Section -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6">
+ 
             <!-- Post Count -->
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h3 class="text-xl font-semibold text-gray-800">Your Posts</h3>
-                <p class="text-2xl font-bold text-indigo-600">0 Posts</p>
-                <a href="#" class="mt-4 inline-block text-indigo-600 hover:text-indigo-800">View All Posts</a>
+                <p class="text-gray-600 mt-2">You have {{ $totalPosts }} posts.</p>
+                <a href="{{ url('/dashboard/posts') }}" class="mt-4 inline-block text-indigo-600 hover:text-indigo-800">View All Posts</a>
             </div>
 
             <!-- New Post Button -->
@@ -23,7 +24,7 @@
                 <h3 class="text-xl font-semibold text-gray-800">Create New Post</h3>
                 <a href="#" class="mt-4 inline-block bg-indigo-600 text-white rounded-lg py-2 px-6 hover:bg-indigo-700">Create</a>
             </div>
-            
+                
             <!-- Recent Activity -->
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h3 class="text-xl font-semibold text-gray-800">Recent Activity</h3>
