@@ -23,10 +23,10 @@ Route::get('/about', function () {
 });
 
 // All Posts route
-Route::get('/blog', [PostController::class, 'index']); // 'index' tu nama method
+Route::get('/blog', [PostController::class, 'index']); 
 
 // Single Post route
-Route::get('posts/{post:slug}', [PostController::class, 'show']); // 'show' tu nama method
+Route::get('posts/{post:slug}', [PostController::class, 'show']); 
 
 // Route untuk category page
 Route::get('categories', function() {
@@ -37,36 +37,19 @@ Route::get('categories', function() {
 });
 
 //Route untuk login
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest'); // 'index' tu nama method
-Route::post('/login', [LoginController::class, 'authenticate']); // 'authenticate' tu nama method
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']); 
 Route::post('/logout', [LoginController::class, 'logout']);
 
 //Route untuk register
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');  
-Route::post('/register', [RegisterController::class, 'store']); // 'store' tu nama method
+Route::post('/register', [RegisterController::class, 'store']); 
 
-//Route untuk dashboard
-Route::get('/dashboard', function() {
-    return view('backend.dashboard.index');
-})->middleware('auth');
+// Route untuk dashboard (controller method)
+Route::get('/dashboard', [DashboardPostController::class, 'dashboard'])->middleware('auth');
 
-Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth'); 
-//Route untuk My Posts(Backend)
+//Route untuk checkSlug
+Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
+
+//Route untuk 'My Posts' (Backend)
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
-
-
-// // Route to display posts for a specific "category" identified by its slug
-// Route::get('categories/{category:slug}', function(Category $category){
-//     return view('posts',[
-//         'title' => "Post By Category : $category->name",
-//         'posts' => $category->posts->load('category', 'author'), // "load" tu ialah Lazy eager Loading
-//     ]);
-// });
-
-// // Route to display posts for a specific "author" identified by its slug
-// Route::get('/authors/{author:username}', function(User $author){
-//     return view('posts',[
-//         'title' => "Post By Author : $author->name",
-//         'posts' => $author->posts->load('category', 'author'), // Corrected to use `posts` instead of `post`, check dekat user model & "load" tu ialah Lazy eager Loading
-//     ]);
-// });

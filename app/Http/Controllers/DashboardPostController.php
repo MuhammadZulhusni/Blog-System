@@ -4,19 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Category;
-use Illuminate\Http\Request;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardPostController extends Controller
 {
+    // Method for showing the total posts on the dashboard
+    public function dashboard()
+    {
+        $totalPosts = Post::where('user_id', Auth::id())->count();
+
+        return view('backend.dashboard.index', [
+            'totalPosts' => $totalPosts,
+        ]);
+    }
+
+    // Method for showing all posts
     public function index()
     {
         return view('backend.dashboard.posts.index', [
             'posts' => Post::where('user_id', auth()->user()->id)->get()
         ]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
