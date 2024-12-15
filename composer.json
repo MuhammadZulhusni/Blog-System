@@ -12,8 +12,9 @@
         "cviebrock/eloquent-sluggable": "^11.0",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "myclabs/deep-copy": "^1.10",
         "nunomaduro/termwind": "^2.0",
-        "myclabs/deep-copy": "^1.10"
+        "webmil/text-language-detect": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",

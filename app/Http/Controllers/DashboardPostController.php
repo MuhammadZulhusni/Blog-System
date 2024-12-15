@@ -11,20 +11,39 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardPostController extends Controller
 {
-    // Method for showing the stats on the dashboard
+    // Method for showing the stats on the dashboard 
     public function dashboard()
     {
         // Count the total posts by the authenticated user
         $totalPosts = Post::where('user_id', Auth::id())->count();
-        
+    
         // Fetch the latest post by the authenticated user
         $latestPost = Post::where('user_id', Auth::id())->latest()->first();
-        
-        // Get post distribution by category (count of posts in each category, filtered by the authenticated user)
+    
+        // Get post distribution by category
         $postsPerCategory = Category::withCount(['posts' => function ($query) {
             $query->where('user_id', Auth::id()); // Only count posts for the authenticated user
         }])->get();
-        
+    
+        // Calculate total words in all posts by the authenticated user
+        $totalWords = auth()->user()->posts->sum(function ($post) {
+            return Str::wordCount($post->body); // Count words in each post's content
+        });
+    
+        // Get the longest post (post with the most words)
+        $longestPost = Post::where('user_id', Auth::id())
+            ->get()
+            ->sortByDesc(function ($post) {
+                return Str::wordCount($post->body); // Sorting by word count in descending order
+            })->first();
+    
+        // Get the shortest post (post with the least words)
+        $shortestPost = Post::where('user_id', Auth::id())
+            ->get()
+            ->sortBy(function ($post) {
+                return Str::wordCount($post->body); // Sorting by word count in ascending order
+            })->first();
+    
         // Prepare data for passing to the frontend for the chart
         $postsPerCategoryData = $postsPerCategory->map(function ($category) {
             return [
@@ -34,20 +53,25 @@ class DashboardPostController extends Controller
         });
     
         // Pass the data to the view
-        return view('backend.dashboard.index', compact('totalPosts', 'latestPost', 'postsPerCategoryData'));
-    }
-    
+        return view('backend.dashboard.index', [
+            'totalPosts' => $totalPosts,
+            'latestPost' => $latestPost,
+            'postsPerCategoryData' => $postsPerCategoryData,
+            'totalWords' => $totalWords,
+            'longestPost' => $longestPost,
+            'shortestPost' => $shortestPost,
+        ]);
+    }    
+
     // Method for showing all posts
     public function index()
     {
         return view('backend.dashboard.posts.index', [
             'posts' => Post::where('user_id', auth()->user()->id)->get()
         ]);
-    }
-    
-    /**
-     * Show the form for creating a new resource.
-     */
+    } 
+
+    // Method for showing the create post form
     public function create()
     {
         return view('backend.dashboard.posts.create', [
@@ -55,9 +79,7 @@ class DashboardPostController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Method for storing a new post
     public function store(Request $request)
     {
         // Validate the incoming request data
@@ -79,9 +101,7 @@ class DashboardPostController extends Controller
         return redirect('/dashboard/posts')->with('success', 'New post has been added!');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // Method for showing a single post
     public function show(Post $post)
     {
         return view('backend.dashboard.posts.show', [
@@ -89,9 +109,7 @@ class DashboardPostController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // Method for editing an existing post
     public function edit(Post $post)
     {
         return view('backend.dashboard.posts.edit', [
@@ -100,9 +118,7 @@ class DashboardPostController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Method for updating a post
     public function update(Request $request, Post $post)
     {
         $rules = [
@@ -115,20 +131,19 @@ class DashboardPostController extends Controller
             $rules['slug'] = 'required|unique:posts';
         }
 
-        $validateData = $request->validate($rules);
+        $validatedData = $request->validate($rules);
 
-        $validateData['user_id'] = auth()->user()->id;
-        $validateData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
 
+        // Update the post data in the database
         Post::where('id', $post->id)
-            ->update($validateData);
+            ->update($validatedData);
 
         return redirect('/dashboard/posts')->with('success', 'Post has been updated!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Method for deleting a post
     public function destroy(Post $post)
     {
         Post::destroy($post->id);
@@ -136,6 +151,7 @@ class DashboardPostController extends Controller
         return redirect('/dashboard/posts')->with('success', 'Post has been deleted');
     }
 
+    // Method for checking and generating a unique slug
     public function checkSlug(Request $request)
     {
         $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
