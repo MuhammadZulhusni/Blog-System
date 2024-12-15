@@ -7,7 +7,7 @@
     <hr class="border-gray-300 mb-4">
 
     <!-- Form Container -->
-    <div class="w-full max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <div class="w-full max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg border-2 border-blue-600">
 
         <form action="/dashboard/posts" method="POST" enctype="multipart/form-data">
             @csrf
