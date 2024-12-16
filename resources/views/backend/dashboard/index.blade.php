@@ -170,6 +170,70 @@
         </div>
     </div>
 
+      <!-- Floating Help Button -->
+      <div x-data="{ openModal: false }" class="fixed bottom-6 right-6">
+            <button
+                type="button"
+                class="w-20 h-20 flex items-center justify-center bg-purple-600 hover:bg-purple-700 text-white rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 transition-transform duration-300 transform hover:scale-110"
+                @click="openModal = true">
+                <img src="https://cdn-icons-png.flaticon.com/128/4961/4961759.png" alt="Help Icon" class="w-12 h-12">
+            </button>
+
+            <!-- Modal (Alpine.js) -->
+            <div
+                x-show="openModal"
+                class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+                x-cloak
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-90"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-90"
+            >
+                <!-- Modal Content -->
+                <div class="relative bg-white rounded-xl shadow-lg w-full max-w-md p-6 overflow-hidden">
+                    <!-- Close Button -->
+                    <button
+                        type="button"
+                        @click="openModal = false"
+                        class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <!-- Modal Header -->
+                    <div class="text-center">
+                        <h2 class="text-2xl font-bold text-gray-900">Contact Customer Support</h2>
+                        <p class="mt-2 text-sm text-gray-500">
+                            Do you want to open WhatsApp to contact our customer support?
+                        </p>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="mt-6 flex justify-center space-x-4">
+                        <!-- Cancel Button -->
+                        <button
+                            type="button"
+                            @click="openModal = false"
+                            class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
+                            Cancel
+                        </button>
+
+                        <!-- Confirm Button -->
+                        <a
+                            href="https://wa.me/60182400849"
+                            target="_blank"
+                            class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
+                            Confirm
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     <!-- Link js file to make bar chart -->
     <script>
     // Pass the PHP data to a JavaScript variable in the Blade template
@@ -178,4 +242,5 @@
 
     <!-- Link to external JS file -->
     <script src="{{ asset('js/dashboard.js') }}"></script>  
+
 @endsection
