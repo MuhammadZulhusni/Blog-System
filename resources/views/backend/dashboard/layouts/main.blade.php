@@ -21,6 +21,11 @@
         trix-toolbar [data-trix-button-group="file-tools"]{
             display: none;
         }
+
+        /* This prevents the brief flash of the button or modal when the page is refreshed. */
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
 </head>
 
