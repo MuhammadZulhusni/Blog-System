@@ -174,7 +174,7 @@
       <div x-data="{ openModal: false }" class="fixed bottom-6 right-6">
             <button
                 type="button"
-                class="w-20 h-20 flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 transition-transform duration-300 transform hover:scale-110"
+                class="w-20 h-20 flex items-center justify-center bg-purple-600 hover:bg-purple-700 text-white rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 transition-transform duration-300 transform hover:scale-110"
                 @click="openModal = true">
                 <img src="https://cdn-icons-png.flaticon.com/128/4961/4961759.png" alt="Help Icon" class="w-12 h-12">
             </button>
@@ -225,7 +225,7 @@
                         <a
                             href="https://wa.me/60182400849"
                             target="_blank"
-                            class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
+                            class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
                             Confirm
                         </a>
                     </div>
