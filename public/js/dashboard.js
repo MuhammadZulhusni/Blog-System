@@ -65,3 +65,12 @@ const postsCategoryChart = new Chart(ctx, {
 if (postCounts.every((count) => count === 0)) {
     document.getElementById("noPostsMessage").classList.remove("hidden");
 }
+
+document
+    .querySelector('a[href="#stats-section"]')
+    .addEventListener("click", function (e) {
+        e.preventDefault();
+        document.querySelector("#stats-section").scrollIntoView({
+            behavior: "smooth",
+        });
+    });

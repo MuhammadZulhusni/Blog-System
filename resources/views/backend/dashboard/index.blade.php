@@ -5,29 +5,55 @@
 
         <!-- Welcome Section -->
         <div class="mb-12 text-center">
-            <div class="bg-gradient-to-r from-blue-950 to-blue-800 p-10 rounded-lg shadow-lg border-2 border-transparent 
-                hover:shadow-xl hover:border-blue-600 transition-all duration-300 ease-in-out">
-                
-                <h1 class="text-4xl font-bold text-white">
-                    Welcome, {{ auth()->user()->username }}! 👋
+            <div class="relative bg-gradient-to-r from-blue-950 to-blue-800 p-10 rounded-lg shadow-lg border-2 border-transparent 
+                hover:shadow-2xl hover:border-blue-500 transition-all duration-300 ease-in-out overflow-hidden">
+
+                <!-- Subtle Glow Effect -->
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-800 to-transparent opacity-30 rounded-lg pointer-events-none"></div>
+
+                <!-- Welcome Text with Tailwind Animation -->
+                <h1 class="text-5xl font-extrabold text-white mb-4 animate-fadeInUp">
+                    Welcome, {{ auth()->user()->username }}! 
+                    <!-- Replace emoji with GIF -->
+                    <img src="https://media.tenor.com/nebZyl8oN7IAAAAi/wave-hello.gif" alt="animated emoji" class="inline-block w-16 h-16">
                 </h1>
 
-                <p class="text-xl text-gray-200 mt-4">
-                    It's fantastic to see you. You're logged in as <strong class="text-blue-300">{{ auth()->user()->name }}</strong> ({{ auth()->user()->email }})
+                <!-- User Info -->
+                <p class="text-lg text-white mt-4 animate-fadeInUp">
+                    We're so glad you're here! You're logged in as 
+                    <strong class="text-blue-300">{{ auth()->user()->name }}</strong> 
+                    (<span class="text-gray-100">{{ auth()->user()->email }}</span>).
                 </p>
 
-                <img src="https://cdn-icons-png.flaticon.com/256/7259/7259543.png" alt="Welcome Icon" class="w-32 h-32 mt-6 mx-auto rounded-full shadow-xl">
+                <!-- Welcome Icon -->
+                <div class="relative mx-auto mt-8 w-32 h-32">
+                    <img 
+                        src="https://cdn-icons-png.flaticon.com/256/7259/7259543.png" 
+                        alt="Welcome Icon" 
+                        class="w-full h-full rounded-full shadow-lg transform transition duration-500 hover:scale-110 hover:rotate-6"
+                    >
+                </div>
 
-                <p class="text-lg text-gray-300 mt-4">
-                    We're so glad you're here! Take a look around, and let’s make something amazing together.
+                <!-- Motivational Message -->
+                <p class="text-lg text-white mt-6">
+                    Explore, and make something amazing with us today. 
                 </p>
+
+                <!-- Call-to-Action -->
+                <div class="mt-8">
+                    <a 
+                        href="#stats-section"
+                        class="inline-block px-8 py-3 text-blue-600 bg-white border-2 border-blue-600 rounded-lg shadow-md hover:bg-blue-600 hover:text-white hover:border-blue-700 hover:shadow-lg transition-all duration-300">
+                        View Stats
+                    </a>
+                </div>
             </div>
 
-            <hr class="border-blue-600 my-6">
+            <hr class="border-blue-600 my-10">
         </div>
 
         <!-- Stats Section -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div id="stats-section" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
 
             <!-- Post Count -->
             <div class="bg-purple-50 border-2 border-purple-500 text-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col justify-between h-full mb-10">
@@ -65,24 +91,24 @@
                 <a href="/dashboard/posts/{{ $latestPost->slug ?? '#' }}" class="mt-6 inline-block bg-purple-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-purple-700 hover:scale-105 transition-all duration-300 self-center">View Post</a>
             </div>
 
-<!-- Total Words Written -->
-<div class="bg-purple-50 border-2 border-purple-500 text-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col justify-between h-full mb-10">
-    <img src="https://cdn-icons-png.flaticon.com/128/1188/1188519.png" alt="Word Count Icon" class="h-16 w-16 mb-6">
-    <div>
-        <h3 class="text-2xl font-extrabold text-purple-600">Total Words Written</h3>
-        @if ($totalWords > 0)
-            <p class="text-4xl font-extrabold text-gray-800 mt-4">{{ number_format($totalWords) }}</p>
-            <p class="text-lg text-gray-700 mt-1">You’ve written a total of <span class="font-bold text-green-600">{{ number_format($totalWords) }}</span> words across all your posts!</p>
-        @else
-            <p class="text-lg text-gray-700 mt-4">You haven’t written any words yet. Start blogging today!</p>
-        @endif
-    </div>
-    @if ($totalPosts > 0)
-        <a href="{{ url('/dashboard/posts') }}" class="mt-6 inline-block bg-purple-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-purple-700 hover:scale-105 transition-all duration-300 self-center">View Posts</a>
-    @else
-        <a href="{{ url('/dashboard/posts/create') }}" class="mt-6 inline-block bg-purple-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-purple-700 hover:scale-105 transition-all duration-300 self-center">Start Writing</a>
-    @endif
-</div>
+            <!-- Total Words Written -->
+            <div class="bg-purple-50 border-2 border-purple-500 text-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col justify-between h-full mb-10">
+                <img src="https://cdn-icons-png.flaticon.com/128/1188/1188519.png" alt="Word Count Icon" class="h-16 w-16 mb-6">
+                <div>
+                    <h3 class="text-2xl font-extrabold text-purple-600">Total Words Written</h3>
+                    @if ($totalWords > 0)
+                        <p class="text-4xl font-extrabold text-gray-800 mt-4">{{ number_format($totalWords) }}</p>
+                        <p class="text-lg text-gray-700 mt-1">You’ve written a total of <span class="font-bold text-green-600">{{ number_format($totalWords) }}</span> words across all your posts!</p>
+                    @else
+                        <p class="text-lg text-gray-700 mt-4">You haven’t written any words yet. Start blogging today!</p>
+                    @endif
+                </div>
+                @if ($totalPosts > 0)
+                    <a href="{{ url('/dashboard/posts') }}" class="mt-6 inline-block bg-purple-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-purple-700 hover:scale-105 transition-all duration-300 self-center">View Posts</a>
+                @else
+                    <a href="{{ url('/dashboard/posts/create') }}" class="mt-6 inline-block bg-purple-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-purple-700 hover:scale-105 transition-all duration-300 self-center">Start Writing</a>
+                @endif
+            </div>
 
             <!-- Longest Post Section -->
             <div class="bg-orange-50 border-2 border-orange-500 text-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col justify-between h-full mb-10">
@@ -126,7 +152,7 @@
 
             <!-- Frequent Categories Section -->
             <div class="bg-orange-50 border-2 border-orange-500 text-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col justify-between h-full mb-10">
-                <img src="https://cdn-icons-png.flaticon.com/128/1041/1041966.png" alt="Category Icon" class="h-16 w-16 mb-6">
+                <img src="https://cdn-icons-png.flaticon.com/128/6724/6724239.png" alt="Category Icon" class="h-16 w-16 mb-6">
                 <div>
                     <h3 class="text-2xl font-extrabold text-orange-600">Frequent Category</h3>
                     @if ($mostFrequentCategory)
@@ -157,25 +183,28 @@
         <div class="bg-white border-2 border-teal-500 text-gray-900 p-8 rounded-xl shadow-xl hover:shadow-xl transition-all duration-300 mb-12">
             <img src="https://cdn-icons-png.flaticon.com/128/1995/1995574.png" alt="How to Use Icon" class="h-16 w-16 mb-6">
             <h3 class="text-3xl font-extrabold text-gray-900">How to Use This Blog System</h3>
-            <p class="mt-4 text-lg text-gray-700">Welcome to the blog management system! Here's a brief guide to help you get started:</p>
+            <p class="mt-4 text-lg text-gray-700">Welcome to your personalized blogging dashboard! Here's a quick guide to help you navigate and make the most of the features:</p>
             <ul class="list-disc pl-5 mt-4 text-gray-700 space-y-2">
-                <li><strong>Create a Post:</strong> Click the "Create New Post" button to begin writing your blog post. Once done, you can edit or publish it.</li>
-                <li><strong>View Your Posts:</strong> In the "Your Posts" section, you can see all the posts you've created. You can click on any post to view or edit it.</li>
-                <li><strong>Manage Categories:</strong> Organize your posts by categories to help readers find relevant content more easily.</li>
+                <li><strong>Track Your Progress</strong> View key statistics like the total number of posts, the total words you've written, and your longest post. These stats help you keep track of your blogging journey and motivate you to keep writing.</li>
+                <li><strong>Create New Posts</strong> If you haven't written any posts yet, get started by clicking the "Create Your First Post" button. It’s simple and fast to create engaging content for your readers.</li>
+                <li><strong>View and Manage Your Posts</strong> Access all your posts in one place by clicking "View All Posts". You can edit, delete, or update them anytime to keep your blog fresh and relevant.</li>
+                <li><strong>Check Out Your Latest Post</strong> See your most recent creation highlighted in the Latest Post section. You can easily view or share it to connect with your audience.</li>
+                <li><strong>Analyze Your Writing</strong> Dive into insights about your writing habits, like the total word count and details of your longest post, to better understand your writing style and productivity.</li>
             </ul>
-            <p class="mt-6 text-lg text-gray-700">If you need any assistance, feel free to reach out to the admin or check the help section for more tips.</p>
+            <p class="mt-6 text-lg text-gray-700">By exploring these features, you can stay organized, monitor your progress, and make your blogging journey enjoyable and efficient.</p>
         </div>
 
         <!-- Help Section -->
         <div class="bg-white border-2 border-pink-500 text-gray-900 p-8 rounded-xl shadow-xl hover:shadow-xl transition-all duration-300 mt-12">
             <img src="https://cdn-icons-png.flaticon.com/128/16754/16754867.png" alt="Need Help Icon" class="h-16 w-16 mb-6">
             <h3 class="text-3xl font-extrabold text-gray-900">Need Help?</h3>
-            <p class="mt-4 text-lg text-gray-700">If you need further assistance or have any questions, the following resources may help:</p>
+            <p class="mt-4 text-lg text-gray-700">If you’re feeling stuck or have questions about using this blog system, here are some ways to get assistance:</p>
             <ul class="list-disc pl-5 mt-4 text-gray-700 space-y-2">
                 <li><strong>Help Center:</strong> Visit the <a href="https://github.com/MuhammadZulhusni" class="text-blue-600 hover:text-blue-800">Help Center</a> for frequently asked questions and guides.</li>
                 <li><strong>Contact Support:</strong> Reach out to our support team via email at <a href="mailto:zulhusnifamile@example.com" class="text-blue-600 hover:text-blue-800">zulhusnifamile@example.com</a>.</li>
+                <li><strong>Support Button:</strong> You can contact our customer support via WhatsApp by pressing the support button provided.</li>
             </ul>
-            <p class="mt-6 text-lg text-gray-700">We're here to help you get the most out of the blog management system!</p>
+            <p class="mt-6 text-lg text-gray-700">Remember, whether it’s your first post or your hundredth, we’re here to help you every step of the way. Don’t hesitate to reach out if you need a hand!</p>
         </div>
     </div>
 
