@@ -65,24 +65,24 @@
                 <a href="/dashboard/posts/{{ $latestPost->slug ?? '#' }}" class="mt-6 inline-block bg-purple-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-purple-700 hover:scale-105 transition-all duration-300 self-center">View Post</a>
             </div>
 
-            <!-- Total Words Written -->
-            <div class="bg-purple-50 border-2 border-purple-500 text-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col justify-between h-full mb-10">
-                <img src="https://cdn-icons-png.flaticon.com/128/1188/1188519.png" alt="Word Count Icon" class="h-16 w-16 mb-6">
-                <div>
-                    <h3 class="text-2xl font-extrabold text-purple-600">Total Words Written</h3>
-                    @if ($totalWords > 0)
-                        <p class="text-4xl font-extrabold text-gray-800 mt-4">{{ $totalWords }}</p>
-                        <p class="text-lg text-gray-700 mt-1">You’ve written a total of <span class="font-bold text-green-600">{{ $totalWords }}</span> words across all your posts!</p>
-                    @else
-                        <p class="text-lg text-gray-700 mt-4">You haven’t written any words yet. Start blogging today!</p>
-                    @endif
-                </div>
-                @if ($totalPosts > 0)
-                    <a href="{{ url('/dashboard/posts') }}" class="mt-6 inline-block bg-purple-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-purple-700 hover:scale-105 transition-all duration-300 self-center">View Posts</a>
-                @else
-                    <a href="{{ url('/dashboard/posts/create') }}" class="mt-6 inline-block bg-purple-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-purple-700 hover:scale-105 transition-all duration-300 self-center">Start Writing</a>
-                @endif
-            </div>
+<!-- Total Words Written -->
+<div class="bg-purple-50 border-2 border-purple-500 text-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col justify-between h-full mb-10">
+    <img src="https://cdn-icons-png.flaticon.com/128/1188/1188519.png" alt="Word Count Icon" class="h-16 w-16 mb-6">
+    <div>
+        <h3 class="text-2xl font-extrabold text-purple-600">Total Words Written</h3>
+        @if ($totalWords > 0)
+            <p class="text-4xl font-extrabold text-gray-800 mt-4">{{ number_format($totalWords) }}</p>
+            <p class="text-lg text-gray-700 mt-1">You’ve written a total of <span class="font-bold text-green-600">{{ number_format($totalWords) }}</span> words across all your posts!</p>
+        @else
+            <p class="text-lg text-gray-700 mt-4">You haven’t written any words yet. Start blogging today!</p>
+        @endif
+    </div>
+    @if ($totalPosts > 0)
+        <a href="{{ url('/dashboard/posts') }}" class="mt-6 inline-block bg-purple-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-purple-700 hover:scale-105 transition-all duration-300 self-center">View Posts</a>
+    @else
+        <a href="{{ url('/dashboard/posts/create') }}" class="mt-6 inline-block bg-purple-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-purple-700 hover:scale-105 transition-all duration-300 self-center">Start Writing</a>
+    @endif
+</div>
 
             <!-- Longest Post Section -->
             <div class="bg-orange-50 border-2 border-orange-500 text-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col justify-between h-full mb-10">
@@ -92,7 +92,7 @@
                     @if ($longestPost)
                         <p class="text-lg text-gray-700 mt-4">Your longest post is:</p>
                         <p class="text-lg font-bold text-green-600">{{ $longestPost->title }}</p>
-                        <p class="text-lg text-gray-700 mt-1">It contains <span class="font-bold text-green-600">{{ Str::wordCount($longestPost->body) }}</span> words.</p>
+                        <p class="text-lg text-gray-700 mt-1">It contains <span class="font-bold text-green-600">{{ $longestPostWordCount }}</span> words.</p>
                     @else
                         <p class="text-lg text-gray-700 mt-4">You haven't written any posts yet.</p>
                     @endif
@@ -112,7 +112,7 @@
                     @if ($shortestPost)
                         <p class="text-lg text-gray-700 mt-4">Your shortest post is:</p>
                         <p class="text-lg font-bold text-green-600">{{ $shortestPost->title }}</p>
-                        <p class="text-lg text-gray-700 mt-1">It contains <span class="font-bold text-green-600">{{ Str::wordCount($shortestPost->body) }}</span> words.</p>
+                        <p class="text-lg text-gray-700 mt-1">It contains <span class="font-bold text-green-600">{{ $shortestPostWordCount }}</span> words.</p>
                     @else
                         <p class="text-lg text-gray-700 mt-4">You haven't written any posts yet.</p>
                     @endif
@@ -124,14 +124,23 @@
                 @endif
             </div>
 
-            <!-- New Post Button -->
+            <!-- Frequent Categories Section -->
             <div class="bg-orange-50 border-2 border-orange-500 text-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col justify-between h-full mb-10">
-                <img src="https://www.svgrepo.com/show/463480/create-note-alt.svg" alt="Create Post Icon" class="h-16 w-16 mb-6">
+                <img src="https://cdn-icons-png.flaticon.com/128/1041/1041966.png" alt="Category Icon" class="h-16 w-16 mb-6">
                 <div>
-                    <h3 class="text-2xl font-extrabold text-orange-600">Create Your Next Blog Post</h3>
-                    <p class="text-lg text-gray-700 mt-4">Ready to share your thoughts with the world? Start writing your post now and inspire your readers!</p>
+                    <h3 class="text-2xl font-extrabold text-orange-600">Frequent Category</h3>
+                    @if ($mostFrequentCategory)
+                        <p class="text-lg text-gray-700 mt-4">The category with the most posts is:</p>
+                        <p class="text-lg font-bold text-green-600">{{ $mostFrequentCategory->name }}</p>
+                    @else
+                        <p class="text-lg text-gray-700 mt-4">You haven't written any posts yet.</p>
+                    @endif
                 </div>
-                <a href="{{ url('/dashboard/posts/create') }}" class="mt-6 inline-block bg-orange-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-orange-700 hover:scale-105 transition-all duration-300 self-center">Create Your Post</a>
+                @if ($mostFrequentCategory)
+                    <a href="{{ url('/dashboard/posts') }}" class="mt-6 inline-block bg-orange-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-orange-700 hover:scale-105 transition-all duration-300 self-center">View All Categories</a>
+                @else
+                    <a href="{{ url('/dashboard/posts/create') }}" class="mt-6 inline-block bg-orange-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-orange-700 hover:scale-105 transition-all duration-300 self-center">Create Your First Post</a>
+                @endif
             </div>
         </div>
 
