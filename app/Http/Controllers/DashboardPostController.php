@@ -6,44 +6,58 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardPostController extends Controller
 {
+
     // Method for showing the stats on the dashboard 
     public function dashboard()
     {
         // Count the total posts by the authenticated user
         $totalPosts = Post::where('user_id', Auth::id())->count();
-    
+        
         // Fetch the latest post by the authenticated user
         $latestPost = Post::where('user_id', Auth::id())->latest()->first();
-    
+        
         // Get post distribution by category
         $postsPerCategory = Category::withCount(['posts' => function ($query) {
             $query->where('user_id', Auth::id()); // Only count posts for the authenticated user
         }])->get();
-    
+        
         // Calculate total words in all posts by the authenticated user
         $totalWords = auth()->user()->posts->sum(function ($post) {
-            return Str::wordCount($post->body); // Count words in each post's content
+            return str_word_count(strip_tags($post->body)); // Count words in each post's content
         });
     
         // Get the longest post (post with the most words)
         $longestPost = Post::where('user_id', Auth::id())
-            ->get()
-            ->sortByDesc(function ($post) {
-                return Str::wordCount($post->body); // Sorting by word count in descending order
-            })->first();
-    
+            ->select('title', 'body', 'slug') // Selecting only necessary columns for performance
+            ->orderByRaw('LENGTH(body) - LENGTH(REPLACE(body, " ", "")) DESC') // Sort by word count
+            ->first();
+        
+        // Calculate word count for the longest post
+        $longestPostWordCount = $longestPost ? str_word_count(strip_tags($longestPost->body)) : 0;
+        
         // Get the shortest post (post with the least words)
         $shortestPost = Post::where('user_id', Auth::id())
-            ->get()
-            ->sortBy(function ($post) {
-                return Str::wordCount($post->body); // Sorting by word count in ascending order
-            })->first();
-    
+            ->select('title', 'body', 'slug') // Selecting only necessary columns for performance
+            ->orderByRaw('LENGTH(body) - LENGTH(REPLACE(body, " ", "")) ASC') // Sort by word count
+            ->first();
+        
+        // Calculate word count for the shortest post
+        $shortestPostWordCount = $shortestPost ? str_word_count(strip_tags($shortestPost->body)) : 0;
+        
+        // Fetch the category with the most posts for the logged-in user
+        $mostFrequentCategory = Category::select('categories.name')
+            ->join('posts', 'categories.id', '=', 'posts.category_id')
+            ->where('posts.user_id', auth()->id()) // Filter posts by the logged-in user
+            ->groupBy('categories.name')
+            ->orderByDesc(DB::raw('COUNT(posts.id)')) // Sort by the count of posts in descending order
+            ->first(); // Get only the category with the most posts
+        
         // Prepare data for passing to the frontend for the chart
         $postsPerCategoryData = $postsPerCategory->map(function ($category) {
             return [
@@ -51,7 +65,7 @@ class DashboardPostController extends Controller
                 'post_count' => $category->posts_count,
             ];
         });
-    
+        
         // Pass the data to the view
         return view('backend.dashboard.index', [
             'totalPosts' => $totalPosts,
@@ -59,10 +73,13 @@ class DashboardPostController extends Controller
             'postsPerCategoryData' => $postsPerCategoryData,
             'totalWords' => $totalWords,
             'longestPost' => $longestPost,
+            'longestPostWordCount' => $longestPostWordCount, // Pass the word count for the longest post
             'shortestPost' => $shortestPost,
+            'shortestPostWordCount' => $shortestPostWordCount, // Pass the word count for the shortest post
+            'mostFrequentCategory' => $mostFrequentCategory, // Pass the most frequent category to the view
         ]);
-    }    
-
+    }
+    
     // Method for showing all posts
     public function index()
     {
