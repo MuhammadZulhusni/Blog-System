@@ -5,46 +5,42 @@
 
         <!-- Welcome Section -->
         <div class="mb-12 text-center">
-            <div class="relative bg-gradient-to-r from-blue-950 to-blue-800 p-10 rounded-lg shadow-lg border-2 border-transparent 
+            <div class="relative bg-gradient-to-r from-blue-950 to-blue-800 p-12 rounded-lg shadow-lg border-2 border-transparent 
                 hover:shadow-2xl hover:border-blue-500 transition-all duration-300 ease-in-out overflow-hidden">
 
-                <!-- Subtle Glow Effect -->
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-800 to-transparent opacity-30 rounded-lg pointer-events-none"></div>
+                <!-- Subtle Background Gradient -->
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-800 to-transparent opacity-20 rounded-lg pointer-events-none"></div>
 
-                <!-- Welcome Text with Tailwind Animation -->
-                <h1 class="text-5xl font-extrabold text-white mb-4 animate-fadeInUp">
-                    Welcome, {{ auth()->user()->username }}! 
-                    <!-- Replace emoji with GIF -->
-                    <img src="https://media.tenor.com/nebZyl8oN7IAAAAi/wave-hello.gif" alt="animated emoji" class="inline-block w-16 h-16">
-                </h1>
+                <!-- Animated Emoji with Welcome Text -->
+                <div class="flex flex-col items-center space-y-4 animate-fadeInUp">
+                    <h1 class="text-5xl font-extrabold text-white flex items-center space-x-2">
+                        Welcome, {{ auth()->user()->username }}!
+                        <img src="https://media.tenor.com/nebZyl8oN7IAAAAi/wave-hello.gif" 
+                            alt="wave emoji" class="inline-block w-14 h-14">
+                    </h1>
 
-                <!-- User Info -->
-                <p class="text-lg text-white mt-4 animate-fadeInUp">
-                    We're so glad you're here! You're logged in as 
-                    <strong class="text-blue-300">{{ auth()->user()->name }}</strong> 
-                    (<span class="text-gray-100">{{ auth()->user()->email }}</span>).
-                </p>
-
-                <!-- Welcome Icon -->
-                <div class="relative mx-auto mt-8 w-32 h-32">
-                    <img 
-                        src="https://cdn-icons-png.flaticon.com/256/7259/7259543.png" 
-                        alt="Welcome Icon" 
-                        class="w-full h-full rounded-full shadow-lg transform transition duration-500 hover:scale-110 hover:rotate-6"
-                    >
+                    <!-- User Info -->
+                    <p class="text-lg text-blue-200">
+                        You are logged in as 
+                        <strong class="text-white">{{ auth()->user()->name }}</strong> 
+                        (<span class="text-gray-300">{{ auth()->user()->email }}</span>).
+                    </p>
                 </div>
 
+                <!-- Divider -->
+                <div class="w-16 h-1 bg-blue-400 mx-auto my-6 rounded"></div>
+
                 <!-- Motivational Message -->
-                <p class="text-lg text-white mt-6">
-                    Explore, and make something amazing with us today. 
+                <p class="text-lg text-blue-300 leading-relaxed">
+                    Let’s make today productive. Explore, collaborate, and achieve your goals with us.
                 </p>
 
-                <!-- Call-to-Action -->
+                <!-- Call-to-Action Button -->
                 <div class="mt-8">
-                    <a 
-                        href="#stats-section"
-                        class="inline-block px-8 py-3 text-blue-600 bg-white border-2 border-blue-600 rounded-lg shadow-md hover:bg-blue-600 hover:text-white hover:border-blue-700 hover:shadow-lg transition-all duration-300">
-                        View Stats
+                    <a href="#stats-section"
+                    class="inline-block px-8 py-3 text-blue-600 bg-white font-semibold border-2 border-blue-600 rounded-full shadow-md 
+                    hover:bg-blue-600 hover:text-white hover:border-blue-700 hover:shadow-lg transition-all duration-300">
+                        View Your Stats
                     </a>
                 </div>
             </div>
